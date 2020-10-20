@@ -32,12 +32,13 @@ namespace UNITYSaleYardFiles
             this.Text = "UNITY - Multi Business Entity - Sale Yard Disk Utility";
             Test_For_Paramters();
             rtProcess.Enabled = parametersSet;
-            pnlProcess.Visible = false;
             if (processMode == false)
             {
                 rbClear.Enabled = false;
                 rbLoad.Enabled = false;
             }
+
+            tcEntities.Visible = false;
         }
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
@@ -57,7 +58,7 @@ namespace UNITYSaleYardFiles
                 rtSetup.Enabled = false;
                 // Set Up Business Entities Tabs
                 // 1 - Unknow Vendor Tab
-                tcEntities.TabPages[0].Text = "Unallocated Vendors";
+                tcEntities.TabPages[0].Text = "All Entities";
 
                 // 2 - Business Entities Vendors
                 for (int i = 0; i < BusinessEntities.Count; i++)
@@ -83,10 +84,10 @@ namespace UNITYSaleYardFiles
                 for (int i = BusinessEntities.Count + 1; i < tcEntities.TabPages.Count; i++)
                     tcEntities.TabPages.RemoveAt(i);
 
-                pnlProcess.Visible = true;
                 rbProcess.Enabled = false;
                 rbClear.Enabled = true;
                 rbLoad.Enabled = true;
+                tcEntities.Visible = true;
             }
         }
         private void rbClear_Click(object sender, EventArgs e)
@@ -98,8 +99,9 @@ namespace UNITYSaleYardFiles
                     dgUnallocated.Rows.Clear();
                     dgEntity1.Rows.Clear();
                     dgEntity2.Rows.Clear();
+                    dgEntity3.Rows.Clear();
+                    tcEntities.Visible = false;
                     processMode = false;
-                    pnlProcess.Visible = false;
                     rbProcess.Enabled = true;
                     rbClear.Enabled = false;
                     rbLoad.Enabled = false;
@@ -115,10 +117,88 @@ namespace UNITYSaleYardFiles
             mySale.MyEntities = BusinessEntities;
             mySale.ShowDialog();
         }
+        private void dgUnallocated_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (dgUnallocated.Rows[e.RowIndex].Cells["Entity"].Value.ToString().Trim().Length > 0)
+                {
+                    dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                }
+                else
+                {
+                    dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
+            }
+        }
+        private void dgUnallocated_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Int32 myLots = 0;
+                Int32 myHead = 0;
+                Double myKgs = 0;
+                Double myValue = 0;
+                Int32 myUnknownVendors = 0;
+                Int32 myUnknownBuyers = 0;
+                Int32 myUnknownDescriptors = 0;
 
+                for (int i = 0; i < dgUnallocated.Rows.Count; i++)
+                {
+                    myLots += 1;
+                    myHead += Convert.ToInt32(dgUnallocated.Rows[i].Cells["Head"].Value);
+                    myKgs += Convert.ToDouble(dgUnallocated.Rows[i].Cells["Weight"].Value);
+                    myValue += Convert.ToDouble(dgUnallocated.Rows[i].Cells["TotalValue"].Value);
+                    if (dgUnallocated.Rows[i].Cells["Descriptor"].Value.ToString().Trim().Length <= 0)
+                        myUnknownDescriptors += 1;
+                    if (dgUnallocated.Rows[i].Cells["VendorName"].Value.ToString().Trim().Length <= 0)
+                        myUnknownVendors += 1;
+                    if (dgUnallocated.Rows[i].Cells["BuyerName"].Value.ToString().Trim().Length <= 0)
+                        myUnknownBuyers += 1;
+                }
+
+                txtLots.Text = myLots.ToString("N0");
+                txtHead.Text = myHead.ToString("N0");
+                txtKgs.Text = myKgs.ToString("N1");
+                txtValue.Text = myValue.ToString("C2");
+                txtVendors.Text = myUnknownVendors.ToString("N0");
+                txtBuyers.Text = myUnknownBuyers.ToString("N0");
+                txtDescriptors.Text = myUnknownDescriptors.ToString("N0");
+                pnlStatistics.Visible = true;
+
+            }
+        }
         private void dgUnallocated_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            frmEditLot editLot = new frmEditLot();
+            editLot.parentForm = this;
+            editLot.mySaleYards = SaleYards;
+            editLot.myEntities = BusinessEntities;
+            editLot.currentEntityIndex = Entity_Index(dgUnallocated.CurrentRow.Cells["Entity"].Value.ToString());
+            editLot.currentRowIndex = dgUnallocated.CurrentRow.Index;
+            editLot.ShowDialog();
+        }
+        private Int32 Entity_Index(String entityColumn)
+        {
+            Int32 thisIndex = -1;
 
+            if (entityColumn.Trim().Length > 0)
+            { 
+                for (int i = 0; i < BusinessEntities.Count; i++)
+                {
+                    if (BusinessEntities[i].BusinessEntityName == entityColumn)
+                    {
+                        thisIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            return thisIndex;
+        }
+        private void btnHideStats_Click(object sender, EventArgs e)
+        {
+            pnlStatistics.Visible = false;
         }
 
         // ***************************************************************************************************
@@ -143,6 +223,10 @@ namespace UNITYSaleYardFiles
         // ***************************************************************************************************
         // Exit
         // ***************************************************************************************************
+        private void rbExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void rbExit_DoubleClick(object sender, EventArgs e)
         {
             this.Close();
@@ -252,6 +336,85 @@ namespace UNITYSaleYardFiles
             return strOutput;
         }
 
+        private void rbExport_Click(object sender, EventArgs e)
+        {
+            if (tcEntities.SelectedTab.Text == "All Entities")
+            {
+                if (Export_Sale(dgUnallocated) == true)
+                {
+                    MessageBox.Show(messageHeader + "File Exported Successfully !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                for (int i = 1; i < tcEntities.TabPages.Count; i++)
+                {
+                    if (tcEntities.TabPages[i].Text == tcEntities.SelectedTab.Text)
+                    {
+                        DataGridView thisView = new DataGridView();
+                        if (i == 1)
+                            thisView = dgEntity1;
+                        else if (i == 2)
+                            thisView = dgEntity2;
+
+                        if (Export_Sale(thisView) == true)
+                        {
+                            MessageBox.Show(messageHeader + "File Exported Successfully !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        private Boolean Export_Sale(DataGridView myDataGrid)
+        {
+            Boolean isSuccessful = true;
+
+            try
+            {
+                exportFile.FileName = "Export.txt";
+                if (exportFile.ShowDialog() != DialogResult.Cancel)
+                {
+                    using (System.IO.StreamWriter exportFileSpec = new System.IO.StreamWriter(exportFile.FileName))
+                    {
+                        for (int i = 0; i < myDataGrid.Rows.Count; i++)
+                        {
+                            String myLine = myDataGrid.Rows[i].Cells[0].Value.ToString() + ",";
+                            myLine += ",";
+                            myLine += myDataGrid.Rows[i].Cells[2].Value.ToString() + ",";
+                            myLine += myDataGrid.Rows[i].Cells[1].Value.ToString() + ",";
+                            myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[4].Value) * 10).ToString() + ",";
+                            myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[5].Value) * 1000).ToString() + ",";
+                            myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[6].Value) * 100).ToString() + ",";
+                            myLine += ",";
+                            myLine += ",";
+                            myLine += ",";
+                            myLine += myDataGrid.Rows[i].Cells[7].Value.ToString() + ",";
+                            myLine += myDataGrid.Rows[i].Cells[9].Value.ToString() + ",";
+                            myLine += ",";
+                            myLine += myDataGrid.Rows[i].Cells[11].Value.ToString() + ",";
+                            myLine += myDataGrid.Rows[i].Cells[12].Value.ToString() + ",";
+                            myLine += ",";
+                            myLine += myDataGrid.Rows[i].Cells[13].Value.ToString() + ",";
+                            exportFileSpec.WriteLine(myLine);
+                        }
+                    }
+                }
+                else
+                {
+                    isSuccessful = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                isSuccessful = false;
+                MessageBox.Show(messageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return isSuccessful;
+        }
     }
 
 

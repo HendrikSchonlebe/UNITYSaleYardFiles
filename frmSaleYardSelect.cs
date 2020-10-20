@@ -21,6 +21,7 @@ namespace UNITYSaleYardFiles
         public List<BusinessEntity> MyEntities;
 
         private String helpMessage = string.Empty;
+        private String saleYardFileFormat = string.Empty;
 
         public frmSaleYardSelect()
         {
@@ -35,7 +36,7 @@ namespace UNITYSaleYardFiles
             cmbSaleYard.Items.Add("(not selected)");
             for (int i = 0; i < MySaleYards.Count; i++)
             {
-                cmbSaleYard.Items.Add(MySaleYards[i].SaleYardName + " " + MySaleYards[i].FileFormat);
+                cmbSaleYard.Items.Add(MySaleYards[i].SaleYardName + ", " + MySaleYards[i].FileFormat);
             }
             cmbSaleYard.Text = cmbSaleYard.Items[0].ToString();
             Validate_Form();
@@ -52,12 +53,27 @@ namespace UNITYSaleYardFiles
 
         private void cmbSaleYard_SelectedValueChanged(object sender, EventArgs e)
         {
+            saleYardFileFormat = string.Empty;
+            if (cmbSaleYard.Text != cmbSaleYard.Items[0].ToString())
+            {
+                String[] myYardName = cmbSaleYard.Text.Split(',');
+                for (int i = 0; i < MySaleYards.Count; i++)
+                {
+                    if (MySaleYards[i].SaleYardName.Trim() == myYardName[0].Trim())
+                    {
+                        saleYardFileFormat = myYardName[1].Trim();
+                        break;
+                    }
+                }
+            }
             Validate_Form();
         }
         private void txtSaleYardFile_Enter(object sender, EventArgs e)
         {
             getSaleFile.ShowDialog();
             txtSaleYardFile.Text = getSaleFile.FileName;
+            if (txtSaleYardFile.Text.Trim().Length > 0)
+                SendKeys.Send("{Tab}");
         }
         private void txtSaleYardFile_Leave(object sender, EventArgs e)
         {
@@ -97,7 +113,9 @@ namespace UNITYSaleYardFiles
                     {
                         if (Parse_Table())
                         {
-
+                            this.Cursor = Cursors.Default;
+                            MessageBox.Show(MessageHeader + "Sale Yard File Loaded & Parsed !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            this.Close();
                         }
                     }
                     else
@@ -148,11 +166,28 @@ namespace UNITYSaleYardFiles
         {
             Boolean isSuccessful = true;
 
+            lblProgress.Text = "Wait - Loading Sale Lots";
+            lblProgress.Visible = true;
+            myParent.dgUnallocated.Rows.Clear();
+
+            if (saleYardFileFormat == "Livestock Exchange - TXT format")
+            {
+                isSuccessful = Load_Livestock_Exchange_txt_file();
+            }
+            else
+            {
+                isSuccessful = false;
+                MessageBox.Show(MessageHeader + "Unkown or Unsupported file format !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            return isSuccessful;
+        }
+        private Boolean Load_Livestock_Exchange_txt_file()
+        {
+            Boolean isSuccessful = true;
+
             try
             {
-                lblProgress.Text = "Wait - Loading Sale Lots";
-                lblProgress.Visible = true;
-                myParent.dgUnallocated.Rows.Clear();
                 String[] SaleYardLines = File.ReadAllLines(txtSaleYardFile.Text.Trim());
                 foreach (String myLine in SaleYardLines)
                 {
@@ -239,6 +274,7 @@ namespace UNITYSaleYardFiles
                 }
                 else
                 {
+                    myParent.dgUnallocated.Rows[myRow].Cells["Entity"].Value = string.Empty;
                     isSuccessful = false;
                 }
                 rdrGetV.Close();
