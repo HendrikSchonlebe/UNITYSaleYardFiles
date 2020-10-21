@@ -36,6 +36,7 @@ namespace UNITYSaleYardFiles
             {
                 rbClear.Enabled = false;
                 rbLoad.Enabled = false;
+                rbExport.Enabled = false;
             }
 
             tcEntities.Visible = false;
@@ -44,6 +45,18 @@ namespace UNITYSaleYardFiles
         {
             if (e.KeyCode == Keys.Escape)
                 rbExit_DoubleClick(sender, e);
+        }
+        private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
+
+            if (dgUnallocated.Rows.Count > 0)
+            {
+                if (MessageBox.Show(messageHeader + "This will ignore all changes made to the original File.\r\nNo changes will be retained unless you have exported and saved the file(s).\r\nDo you really wish to Exit ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         // ***************************************************************************************************
@@ -81,7 +94,7 @@ namespace UNITYSaleYardFiles
                     }
                 }
 
-                for (int i = BusinessEntities.Count + 1; i < tcEntities.TabPages.Count; i++)
+                for (int i = tcEntities.TabPages.Count - 1; i > BusinessEntities.Count; i--)
                     tcEntities.TabPages.RemoveAt(i);
 
                 rbProcess.Enabled = false;
@@ -105,6 +118,7 @@ namespace UNITYSaleYardFiles
                     rbProcess.Enabled = true;
                     rbClear.Enabled = false;
                     rbLoad.Enabled = false;
+                    rbExport.Enabled = false;
                     rtSetup.Enabled = true;
                 }
             }
@@ -116,6 +130,11 @@ namespace UNITYSaleYardFiles
             mySale.MySaleYards = SaleYards;
             mySale.MyEntities = BusinessEntities;
             mySale.ShowDialog();
+
+            if (dgUnallocated.Rows.Count > 0)
+                rbExport.Enabled = true;
+            else
+                rbExport.Enabled = false;
         }
         private void dgUnallocated_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -199,6 +218,78 @@ namespace UNITYSaleYardFiles
         private void btnHideStats_Click(object sender, EventArgs e)
         {
             pnlStatistics.Visible = false;
+        }
+        private void dgEntity1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Int32 myLots = 0;
+                Int32 myHead = 0;
+                Double myKgs = 0;
+                Double myValue = 0;
+                Int32 myUnknownVendors = 0;
+                Int32 myUnknownBuyers = 0;
+                Int32 myUnknownDescriptors = 0;
+
+                for (int i = 0; i < dgEntity1.Rows.Count; i++)
+                {
+                    myLots += 1;
+                    myHead += Convert.ToInt32(dgEntity1.Rows[i].Cells[1].Value);
+                    myKgs += Convert.ToDouble(dgEntity1.Rows[i].Cells[4].Value);
+                    myValue += Convert.ToDouble(dgEntity1.Rows[i].Cells[6].Value);
+                    if (dgEntity1.Rows[i].Cells[3].Value.ToString().Trim().Length <= 0)
+                        myUnknownDescriptors += 1;
+                    if (dgEntity1.Rows[i].Cells[8].Value.ToString().Trim().Length <= 0)
+                        myUnknownVendors += 1;
+                    if (dgEntity1.Rows[i].Cells[10].Value.ToString().Trim().Length <= 0)
+                        myUnknownBuyers += 1;
+                }
+
+                txtLots.Text = myLots.ToString("N0");
+                txtHead.Text = myHead.ToString("N0");
+                txtKgs.Text = myKgs.ToString("N1");
+                txtValue.Text = myValue.ToString("C2");
+                txtVendors.Text = myUnknownVendors.ToString("N0");
+                txtBuyers.Text = myUnknownBuyers.ToString("N0");
+                txtDescriptors.Text = myUnknownDescriptors.ToString("N0");
+                pnlStatistics.Visible = true;
+            }
+        }
+        private void dgEntity2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Int32 myLots = 0;
+                Int32 myHead = 0;
+                Double myKgs = 0;
+                Double myValue = 0;
+                Int32 myUnknownVendors = 0;
+                Int32 myUnknownBuyers = 0;
+                Int32 myUnknownDescriptors = 0;
+
+                for (int i = 0; i < dgEntity2.Rows.Count; i++)
+                {
+                    myLots += 1;
+                    myHead += Convert.ToInt32(dgEntity2.Rows[i].Cells[1].Value);
+                    myKgs += Convert.ToDouble(dgEntity2.Rows[i].Cells[4].Value);
+                    myValue += Convert.ToDouble(dgEntity2.Rows[i].Cells[6].Value);
+                    if (dgEntity2.Rows[i].Cells[3].Value.ToString().Trim().Length <= 0)
+                        myUnknownDescriptors += 1;
+                    if (dgEntity2.Rows[i].Cells[8].Value.ToString().Trim().Length <= 0)
+                        myUnknownVendors += 1;
+                    if (dgEntity2.Rows[i].Cells[10].Value.ToString().Trim().Length <= 0)
+                        myUnknownBuyers += 1;
+                }
+
+                txtLots.Text = myLots.ToString("N0");
+                txtHead.Text = myHead.ToString("N0");
+                txtKgs.Text = myKgs.ToString("N1");
+                txtValue.Text = myValue.ToString("C2");
+                txtVendors.Text = myUnknownVendors.ToString("N0");
+                txtBuyers.Text = myUnknownBuyers.ToString("N0");
+                txtDescriptors.Text = myUnknownDescriptors.ToString("N0");
+                pnlStatistics.Visible = true;
+            }
         }
 
         // ***************************************************************************************************
