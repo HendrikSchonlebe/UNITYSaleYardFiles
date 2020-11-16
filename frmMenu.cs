@@ -29,7 +29,19 @@ namespace UNITYSaleYardFiles
         }
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            this.Text = "UNITY - Multi Business Entity - Sale Yard Disk Utility";
+            String myVersion = string.Empty;
+
+            try
+            {
+                myVersion = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            catch (Exception)
+            {
+                myVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            }
+
+            this.Text = "UNITY - Multi Business Entity - Sale Yard Disk Utility " + myVersion;
+
             Test_For_Paramters();
             rtProcess.Enabled = parametersSet;
             if (processMode == false)
@@ -142,7 +154,10 @@ namespace UNITYSaleYardFiles
             {
                 if (dgUnallocated.Rows[e.RowIndex].Cells["Entity"].Value.ToString().Trim().Length > 0)
                 {
-                    dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
+                    if (dgUnallocated.Rows[e.RowIndex].Cells["VendorName"].Value.ToString().Contains("** Check Entity **"))
+                        dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                    else
+                        dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.White;
                 }
                 else
                 {

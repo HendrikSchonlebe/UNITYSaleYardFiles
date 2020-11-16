@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.rtProcess = new System.Windows.Forms.RibbonTab();
             this.rpProcess = new System.Windows.Forms.RibbonPanel();
@@ -59,23 +59,6 @@
             this.rbExit = new System.Windows.Forms.RibbonButton();
             this.tcEntities = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.pnlStatistics = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtValue = new System.Windows.Forms.TextBox();
-            this.txtDescriptors = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtBuyers = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtVendors = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnHideStats = new System.Windows.Forms.Button();
-            this.txtKgs = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtHead = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtLots = new System.Windows.Forms.TextBox();
-            this.lblStatistics = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.dgUnallocated = new System.Windows.Forms.DataGridView();
             this.LotNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Head = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -157,10 +140,26 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.pnlStatistics = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtValue = new System.Windows.Forms.TextBox();
+            this.txtDescriptors = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBuyers = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVendors = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnHideStats = new System.Windows.Forms.Button();
+            this.txtKgs = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtHead = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtLots = new System.Windows.Forms.TextBox();
+            this.lblStatistics = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.exportFile = new System.Windows.Forms.SaveFileDialog();
             this.tcEntities.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.pnlStatistics.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUnallocated)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity1)).BeginInit();
@@ -170,6 +169,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity3)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.pnlStatistics.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -341,187 +341,6 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // pnlStatistics
-            // 
-            this.pnlStatistics.BackColor = System.Drawing.Color.Silver;
-            this.pnlStatistics.Controls.Add(this.label7);
-            this.pnlStatistics.Controls.Add(this.txtValue);
-            this.pnlStatistics.Controls.Add(this.txtDescriptors);
-            this.pnlStatistics.Controls.Add(this.label6);
-            this.pnlStatistics.Controls.Add(this.txtBuyers);
-            this.pnlStatistics.Controls.Add(this.label5);
-            this.pnlStatistics.Controls.Add(this.txtVendors);
-            this.pnlStatistics.Controls.Add(this.label4);
-            this.pnlStatistics.Controls.Add(this.btnHideStats);
-            this.pnlStatistics.Controls.Add(this.txtKgs);
-            this.pnlStatistics.Controls.Add(this.label3);
-            this.pnlStatistics.Controls.Add(this.txtHead);
-            this.pnlStatistics.Controls.Add(this.label2);
-            this.pnlStatistics.Controls.Add(this.txtLots);
-            this.pnlStatistics.Controls.Add(this.lblStatistics);
-            this.pnlStatistics.Controls.Add(this.label1);
-            this.pnlStatistics.Location = new System.Drawing.Point(466, 12);
-            this.pnlStatistics.Name = "pnlStatistics";
-            this.pnlStatistics.Size = new System.Drawing.Size(346, 282);
-            this.pnlStatistics.TabIndex = 3;
-            this.pnlStatistics.Visible = false;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(21, 139);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(72, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Total Value";
-            // 
-            // txtValue
-            // 
-            this.txtValue.Location = new System.Drawing.Point(228, 136);
-            this.txtValue.Name = "txtValue";
-            this.txtValue.ReadOnly = true;
-            this.txtValue.Size = new System.Drawing.Size(100, 20);
-            this.txtValue.TabIndex = 14;
-            this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // txtDescriptors
-            // 
-            this.txtDescriptors.Location = new System.Drawing.Point(228, 222);
-            this.txtDescriptors.Name = "txtDescriptors";
-            this.txtDescriptors.ReadOnly = true;
-            this.txtDescriptors.Size = new System.Drawing.Size(100, 20);
-            this.txtDescriptors.TabIndex = 13;
-            this.txtDescriptors.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(21, 225);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(183, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Lots with Unknown Descriptors";
-            // 
-            // txtBuyers
-            // 
-            this.txtBuyers.Location = new System.Drawing.Point(228, 196);
-            this.txtBuyers.Name = "txtBuyers";
-            this.txtBuyers.ReadOnly = true;
-            this.txtBuyers.Size = new System.Drawing.Size(100, 20);
-            this.txtBuyers.TabIndex = 11;
-            this.txtBuyers.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 199);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(157, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Lots with Unknown Buyers";
-            // 
-            // txtVendors
-            // 
-            this.txtVendors.Location = new System.Drawing.Point(228, 170);
-            this.txtVendors.Name = "txtVendors";
-            this.txtVendors.ReadOnly = true;
-            this.txtVendors.Size = new System.Drawing.Size(100, 20);
-            this.txtVendors.TabIndex = 9;
-            this.txtVendors.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(165, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Lots with Unknown Vendors";
-            // 
-            // btnHideStats
-            // 
-            this.btnHideStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHideStats.Location = new System.Drawing.Point(129, 247);
-            this.btnHideStats.Name = "btnHideStats";
-            this.btnHideStats.Size = new System.Drawing.Size(75, 23);
-            this.btnHideStats.TabIndex = 7;
-            this.btnHideStats.Text = "Close";
-            this.btnHideStats.UseVisualStyleBackColor = true;
-            this.btnHideStats.Click += new System.EventHandler(this.btnHideStats_Click);
-            // 
-            // txtKgs
-            // 
-            this.txtKgs.Location = new System.Drawing.Point(228, 110);
-            this.txtKgs.Name = "txtKgs";
-            this.txtKgs.ReadOnly = true;
-            this.txtKgs.Size = new System.Drawing.Size(100, 20);
-            this.txtKgs.TabIndex = 6;
-            this.txtKgs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 113);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Total Weight (Kg)";
-            // 
-            // txtHead
-            // 
-            this.txtHead.Location = new System.Drawing.Point(228, 85);
-            this.txtHead.Name = "txtHead";
-            this.txtHead.ReadOnly = true;
-            this.txtHead.Size = new System.Drawing.Size(100, 20);
-            this.txtHead.TabIndex = 4;
-            this.txtHead.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Number of Head";
-            // 
-            // txtLots
-            // 
-            this.txtLots.Location = new System.Drawing.Point(228, 60);
-            this.txtLots.Name = "txtLots";
-            this.txtLots.ReadOnly = true;
-            this.txtLots.Size = new System.Drawing.Size(100, 20);
-            this.txtLots.TabIndex = 2;
-            this.txtLots.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblStatistics
-            // 
-            this.lblStatistics.BackColor = System.Drawing.Color.LemonChiffon;
-            this.lblStatistics.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatistics.Location = new System.Drawing.Point(20, 13);
-            this.lblStatistics.Name = "lblStatistics";
-            this.lblStatistics.Size = new System.Drawing.Size(308, 36);
-            this.lblStatistics.TabIndex = 1;
-            this.lblStatistics.Text = "Statistics";
-            this.lblStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Number of Lots";
-            // 
             // dgUnallocated
             // 
             this.dgUnallocated.AllowUserToAddRows = false;
@@ -562,10 +381,10 @@
             // 
             // Head
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "N0";
-            dataGridViewCellStyle17.NullValue = null;
-            this.Head.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Head.DefaultCellStyle = dataGridViewCellStyle1;
             this.Head.HeaderText = "Head";
             this.Head.MinimumWidth = 12;
             this.Head.Name = "Head";
@@ -587,10 +406,10 @@
             // 
             // Weight
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle18.Format = "N1";
-            dataGridViewCellStyle18.NullValue = null;
-            this.Weight.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N1";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Weight.DefaultCellStyle = dataGridViewCellStyle2;
             this.Weight.HeaderText = "Kgs";
             this.Weight.MinimumWidth = 12;
             this.Weight.Name = "Weight";
@@ -598,10 +417,10 @@
             // 
             // Price
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle19.Format = "C3";
-            dataGridViewCellStyle19.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C3";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
             this.Price.HeaderText = "Price";
             this.Price.MinimumWidth = 12;
             this.Price.Name = "Price";
@@ -609,10 +428,10 @@
             // 
             // TotalValue
             // 
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle20.Format = "C2";
-            dataGridViewCellStyle20.NullValue = null;
-            this.TotalValue.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.TotalValue.DefaultCellStyle = dataGridViewCellStyle4;
             this.TotalValue.HeaderText = "Value";
             this.TotalValue.MinimumWidth = 12;
             this.TotalValue.Name = "TotalValue";
@@ -722,10 +541,10 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle21.Format = "N0";
-            dataGridViewCellStyle21.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn2.HeaderText = "Head";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -747,10 +566,10 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle22.Format = "N1";
-            dataGridViewCellStyle22.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N1";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn5.HeaderText = "Kgs";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -758,10 +577,10 @@
             // 
             // dataGridViewTextBoxColumn6
             // 
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle23.Format = "C3";
-            dataGridViewCellStyle23.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "C3";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn6.HeaderText = "Price";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -769,10 +588,10 @@
             // 
             // dataGridViewTextBoxColumn7
             // 
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle24.Format = "C2";
-            dataGridViewCellStyle24.NullValue = null;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "C2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn7.HeaderText = "Value";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -881,10 +700,10 @@
             // 
             // dataGridViewTextBoxColumn17
             // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            this.dataGridViewTextBoxColumn17.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn17.HeaderText = "Head";
             this.dataGridViewTextBoxColumn17.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
@@ -906,10 +725,10 @@
             // 
             // dataGridViewTextBoxColumn20
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N1";
-            dataGridViewCellStyle14.NullValue = null;
-            this.dataGridViewTextBoxColumn20.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N1";
+            dataGridViewCellStyle10.NullValue = null;
+            this.dataGridViewTextBoxColumn20.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn20.HeaderText = "Kgs";
             this.dataGridViewTextBoxColumn20.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
@@ -917,10 +736,10 @@
             // 
             // dataGridViewTextBoxColumn21
             // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "C3";
-            dataGridViewCellStyle15.NullValue = null;
-            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "C3";
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn21.HeaderText = "Price";
             this.dataGridViewTextBoxColumn21.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
@@ -928,10 +747,10 @@
             // 
             // dataGridViewTextBoxColumn22
             // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle16.Format = "C2";
-            dataGridViewCellStyle16.NullValue = null;
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "C2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn22.HeaderText = "Value";
             this.dataGridViewTextBoxColumn22.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
@@ -1258,6 +1077,187 @@
             this.tabPage10.Text = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
+            // pnlStatistics
+            // 
+            this.pnlStatistics.BackColor = System.Drawing.Color.Silver;
+            this.pnlStatistics.Controls.Add(this.label7);
+            this.pnlStatistics.Controls.Add(this.txtValue);
+            this.pnlStatistics.Controls.Add(this.txtDescriptors);
+            this.pnlStatistics.Controls.Add(this.label6);
+            this.pnlStatistics.Controls.Add(this.txtBuyers);
+            this.pnlStatistics.Controls.Add(this.label5);
+            this.pnlStatistics.Controls.Add(this.txtVendors);
+            this.pnlStatistics.Controls.Add(this.label4);
+            this.pnlStatistics.Controls.Add(this.btnHideStats);
+            this.pnlStatistics.Controls.Add(this.txtKgs);
+            this.pnlStatistics.Controls.Add(this.label3);
+            this.pnlStatistics.Controls.Add(this.txtHead);
+            this.pnlStatistics.Controls.Add(this.label2);
+            this.pnlStatistics.Controls.Add(this.txtLots);
+            this.pnlStatistics.Controls.Add(this.lblStatistics);
+            this.pnlStatistics.Controls.Add(this.label1);
+            this.pnlStatistics.Location = new System.Drawing.Point(466, 12);
+            this.pnlStatistics.Name = "pnlStatistics";
+            this.pnlStatistics.Size = new System.Drawing.Size(346, 282);
+            this.pnlStatistics.TabIndex = 3;
+            this.pnlStatistics.Visible = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(21, 139);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(72, 13);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Total Value";
+            // 
+            // txtValue
+            // 
+            this.txtValue.Location = new System.Drawing.Point(228, 136);
+            this.txtValue.Name = "txtValue";
+            this.txtValue.ReadOnly = true;
+            this.txtValue.Size = new System.Drawing.Size(100, 20);
+            this.txtValue.TabIndex = 14;
+            this.txtValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // txtDescriptors
+            // 
+            this.txtDescriptors.Location = new System.Drawing.Point(228, 222);
+            this.txtDescriptors.Name = "txtDescriptors";
+            this.txtDescriptors.ReadOnly = true;
+            this.txtDescriptors.Size = new System.Drawing.Size(100, 20);
+            this.txtDescriptors.TabIndex = 13;
+            this.txtDescriptors.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(21, 225);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(183, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Lots with Unknown Descriptors";
+            // 
+            // txtBuyers
+            // 
+            this.txtBuyers.Location = new System.Drawing.Point(228, 196);
+            this.txtBuyers.Name = "txtBuyers";
+            this.txtBuyers.ReadOnly = true;
+            this.txtBuyers.Size = new System.Drawing.Size(100, 20);
+            this.txtBuyers.TabIndex = 11;
+            this.txtBuyers.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(21, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(157, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Lots with Unknown Buyers";
+            // 
+            // txtVendors
+            // 
+            this.txtVendors.Location = new System.Drawing.Point(228, 170);
+            this.txtVendors.Name = "txtVendors";
+            this.txtVendors.ReadOnly = true;
+            this.txtVendors.Size = new System.Drawing.Size(100, 20);
+            this.txtVendors.TabIndex = 9;
+            this.txtVendors.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 173);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(165, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Lots with Unknown Vendors";
+            // 
+            // btnHideStats
+            // 
+            this.btnHideStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHideStats.Location = new System.Drawing.Point(129, 247);
+            this.btnHideStats.Name = "btnHideStats";
+            this.btnHideStats.Size = new System.Drawing.Size(75, 23);
+            this.btnHideStats.TabIndex = 7;
+            this.btnHideStats.Text = "Close";
+            this.btnHideStats.UseVisualStyleBackColor = true;
+            this.btnHideStats.Click += new System.EventHandler(this.btnHideStats_Click);
+            // 
+            // txtKgs
+            // 
+            this.txtKgs.Location = new System.Drawing.Point(228, 110);
+            this.txtKgs.Name = "txtKgs";
+            this.txtKgs.ReadOnly = true;
+            this.txtKgs.Size = new System.Drawing.Size(100, 20);
+            this.txtKgs.TabIndex = 6;
+            this.txtKgs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(21, 113);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Total Weight (Kg)";
+            // 
+            // txtHead
+            // 
+            this.txtHead.Location = new System.Drawing.Point(228, 85);
+            this.txtHead.Name = "txtHead";
+            this.txtHead.ReadOnly = true;
+            this.txtHead.Size = new System.Drawing.Size(100, 20);
+            this.txtHead.TabIndex = 4;
+            this.txtHead.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Number of Head";
+            // 
+            // txtLots
+            // 
+            this.txtLots.Location = new System.Drawing.Point(228, 60);
+            this.txtLots.Name = "txtLots";
+            this.txtLots.ReadOnly = true;
+            this.txtLots.Size = new System.Drawing.Size(100, 20);
+            this.txtLots.TabIndex = 2;
+            this.txtLots.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // lblStatistics
+            // 
+            this.lblStatistics.BackColor = System.Drawing.Color.LemonChiffon;
+            this.lblStatistics.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatistics.Location = new System.Drawing.Point(20, 13);
+            this.lblStatistics.Name = "lblStatistics";
+            this.lblStatistics.Size = new System.Drawing.Size(308, 36);
+            this.lblStatistics.TabIndex = 1;
+            this.lblStatistics.Text = "Statistics";
+            this.lblStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Number of Lots";
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1276,8 +1276,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenu_KeyDown);
             this.tcEntities.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.pnlStatistics.ResumeLayout(false);
-            this.pnlStatistics.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUnallocated)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity1)).EndInit();
@@ -1287,6 +1285,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity3)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.pnlStatistics.ResumeLayout(false);
+            this.pnlStatistics.PerformLayout();
             this.ResumeLayout(false);
 
         }

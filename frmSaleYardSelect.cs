@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace UNITYSaleYardFiles
@@ -193,6 +194,11 @@ namespace UNITYSaleYardFiles
                 {
                     String[] thisLot = myLine.Split(',');
 
+                    thisLot[10] = myParent.SymbolStrip(thisLot[10].Trim(), "\"");
+                    
+                    thisLot[11] = myParent.SymbolStrip(thisLot[11].Trim(), "\"");
+                    thisLot[11] = myParent.SymbolStrip(thisLot[11].Trim(), "@");
+
                     if (thisLot[10].Trim().Length > 5)
                         thisLot[10] = thisLot[10].Trim().Substring(0, 5);
                     if (thisLot[11].Trim().Length > 5)
@@ -240,6 +246,15 @@ namespace UNITYSaleYardFiles
                     {
                         if (Vendor_Found(i, myParent.dgUnallocated.Rows[i].Cells["VendorCode"].Value.ToString(), MyEntities[j].MyConnection, j))
                         {
+                            // Test if Vendor is in other Entities
+                            for (int k = j + 1; k < MyEntities.Count; k++)
+                            {
+                                if (Is_In_Other_Entities(myParent.dgUnallocated.Rows[i].Cells["VendorCode"].Value.ToString(), MyEntities[k].MyConnection))
+                                {
+                                    myParent.dgUnallocated.Rows[i].Cells["VendorName"].Value = myParent.dgUnallocated.Rows[i].Cells["VendorName"].Value.ToString() + " ** Check Entity **";
+                                    break;
+                                }
+                            }
                             break;
                         }
                     }
@@ -372,6 +387,30 @@ namespace UNITYSaleYardFiles
             }
 
             return isSuccessful;
+        }
+        private Boolean Is_In_Other_Entities(String shortName, SqlConnection thisConnection)
+        {
+            Boolean isFound = false;
+
+            try
+            {
+                String strSQL = "SELECT * FROM tblLSMaster WHERE lmast_sname = '" + shortName + "'";
+                SqlCommand cmdGetV = new SqlCommand(strSQL, thisConnection);
+                SqlDataReader rdrGetV = cmdGetV.ExecuteReader();
+                if (rdrGetV.HasRows)
+                {
+                    isFound = true;
+                }
+                rdrGetV.Close();
+                cmdGetV.Dispose();
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show(MessageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return isFound;
         }
     }
 }
