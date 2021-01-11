@@ -310,6 +310,29 @@ namespace UNITYSaleYardFiles
                     rdrGetB.Close();
                     cmdGetB.Dispose();
 
+                    if (myParent.dgUnallocated.Rows[myRow].Cells["BuyerName"].Value.ToString().Trim().Length <= 0)
+                    {
+                        // See if Buyer is in another business Entity
+                        for (int i = 0; i < MyEntities.Count; i++)
+                        {
+                            if (i != currentEntity)
+                            {
+                                strSQL = "SELECT * FROM tblLSMaster WHERE lmast_sname = '" + myParent.SymbolStrip(myParent.dgUnallocated.Rows[myRow].Cells["BuyerCode"].Value.ToString(), "@") + "'";
+                                SqlCommand cmdGetBO = new SqlCommand(strSQL, MyEntities[i].MyConnection);
+                                SqlDataReader rdrGetBO = cmdGetBO.ExecuteReader();
+                                if (rdrGetBO.HasRows)
+                                {
+                                    buyerTable.Clear();
+                                    buyerTable.Load(rdrGetBO);
+                                    myParent.dgUnallocated.Rows[myRow].Cells["BuyerName"].Value = "Client of " + MyEntities[i].BusinessEntityName.Trim();
+                                }
+                                rdrGetBO.Close();
+                                cmdGetBO.Dispose();
+                                break;
+                            }
+                        }
+                    }
+
                     DataTable descriptorTable = new DataTable();
                     Boolean foundDescriptor = false;
 

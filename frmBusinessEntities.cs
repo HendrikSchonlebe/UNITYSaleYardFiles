@@ -37,7 +37,7 @@ namespace UNITYSaleYardFiles
             dgEntities.Rows.Clear();
             for (int i = 0; i < MyEntities.Count; i++)
             {
-                dgEntities.Rows.Add(MyEntities[i].BusinessEntityName, MyEntities[i].SQLServerName, MyEntities[i].DataBaseName, MyEntities[i].UserName, MyEntities[i].Password);
+                dgEntities.Rows.Add(MyEntities[i].BusinessEntityName, MyEntities[i].SQLServerName, MyEntities[i].DataBaseName, MyEntities[i].UserName, MyEntities[i].Password, MyEntities[i].ShortName);
             }
             pnlEntityDetails.Visible = false;
         }
@@ -51,6 +51,7 @@ namespace UNITYSaleYardFiles
                 txtDataBase.Text = string.Empty;
                 txtUser.Text = string.Empty;
                 txtPassword.Text = string.Empty;
+                txtShortName.Text = string.Empty;
                 pnlEntityDetails.Visible = true;
                 Validate_Panel();
             }
@@ -80,6 +81,7 @@ namespace UNITYSaleYardFiles
                         txtDataBase.Text = dgEntities.CurrentRow.Cells[2].Value.ToString();
                         txtUser.Text = dgEntities.CurrentRow.Cells[3].Value.ToString();
                         txtPassword.Text = dgEntities.CurrentRow.Cells[4].Value.ToString();
+                        txtShortName.Text = dgEntities.CurrentRow.Cells[5].Value.ToString();
                         pnlEntityDetails.Visible = true;
                         Validate_Panel();
                     }
@@ -111,6 +113,7 @@ namespace UNITYSaleYardFiles
                     txtDataBase.Text = dgEntities.CurrentRow.Cells[2].Value.ToString();
                     txtUser.Text = dgEntities.CurrentRow.Cells[3].Value.ToString();
                     txtPassword.Text = dgEntities.CurrentRow.Cells[4].Value.ToString();
+                    txtShortName.Text = dgEntities.CurrentRow.Cells[5].Value.ToString();
                     pnlEntityDetails.Visible = true;
                     Validate_Panel();
                 }
@@ -156,6 +159,14 @@ namespace UNITYSaleYardFiles
         {
             Validate_Panel();
         }
+        private void txtShortName_Enter(object sender, EventArgs e)
+        {
+            SendKeys.Send("{Home}+{End}");
+        }
+        private void txtShortName_TextChanged(object sender, EventArgs e)
+        {
+            Validate_Panel();
+        }
 
         private void Validate_Panel()
         {
@@ -177,7 +188,11 @@ namespace UNITYSaleYardFiles
             isValid = isValid & txtPassword.Text.Trim().Length > 0;
             if (txtPassword.Text.Trim().Length <= 0)
                 errorMessage += "SQL Server Logon Password is mandatory !\r\n";
-            
+            isValid = isValid & txtShortName.Text.Trim().Length > 0;
+            if (txtShortName.Text.Trim().Length <= 0)
+                errorMessage += "Global Short Name is mandatory !\r\n";
+
+
             btnSaveEntity.Visible = isValid;
             btnTest.Visible = isValid;
         }
@@ -215,6 +230,7 @@ namespace UNITYSaleYardFiles
                 dgEntities.Rows[currentRowIndex].Cells[2].Value = txtDataBase.Text;
                 dgEntities.Rows[currentRowIndex].Cells[3].Value = txtUser.Text;
                 dgEntities.Rows[currentRowIndex].Cells[4].Value = txtPassword.Text;
+                dgEntities.Rows[currentRowIndex].Cells[5].Value = txtShortName.Text;
                 processingMode = BROWSE_MODE;
                 pnlEntityDetails.Visible = false;
             }
@@ -243,25 +259,46 @@ namespace UNITYSaleYardFiles
 
         private Boolean Save_BusinessEntities_Parameters()
         {
+            Boolean isOk = false;
             Boolean isSuccessful = true;
             String ParameterFolder = parameterFile.Substring(0, 21);
 
             try
             {
-                if (File.Exists(parameterFile) == true)
-                    File.Delete(parameterFile);
-
-                if (dgEntities.Rows.Count > 0)
+                if (Directory.Exists("C:\\UNITY\\SaleYardParameters") == false)
                 {
-                    if (Directory.Exists(ParameterFolder) == false)
-                        Directory.CreateDirectory(ParameterFolder);
-
-                    using (StreamWriter EntityFile = new StreamWriter(parameterFile))
+                    try
                     {
-                        for (int i = 0; i < dgEntities.Rows.Count; i++)
+                        Directory.CreateDirectory("C:\\UNITY\\SaleYardParameters");
+                        isOk = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(messageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    isOk = true;
+                }
+
+                if (isOk == true)
+                {
+                    if (File.Exists(parameterFile) == true)
+                        File.Delete(parameterFile);
+
+                    if (dgEntities.Rows.Count > 0)
+                    {
+                        if (Directory.Exists(ParameterFolder) == false)
+                            Directory.CreateDirectory(ParameterFolder);
+
+                        using (StreamWriter EntityFile = new StreamWriter(parameterFile))
                         {
-                            String myLine = dgEntities.Rows[i].Cells[0].Value.ToString() + "," + dgEntities.Rows[i].Cells[1].Value.ToString() + "," + dgEntities.Rows[i].Cells[2].Value.ToString() + "," + dgEntities.Rows[i].Cells[3].Value.ToString() + "," + dgEntities.Rows[i].Cells[4].Value.ToString();
-                            EntityFile.WriteLine(myLine);
+                            for (int i = 0; i < dgEntities.Rows.Count; i++)
+                            {
+                                String myLine = dgEntities.Rows[i].Cells[0].Value.ToString() + "," + dgEntities.Rows[i].Cells[1].Value.ToString() + "," + dgEntities.Rows[i].Cells[2].Value.ToString() + "," + dgEntities.Rows[i].Cells[3].Value.ToString() + "," + dgEntities.Rows[i].Cells[4].Value.ToString() + "," + dgEntities.Rows[i].Cells[5].Value.ToString();
+                                EntityFile.WriteLine(myLine);
+                            }
                         }
                     }
                 }

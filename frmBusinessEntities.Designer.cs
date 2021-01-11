@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBusinessEntities));
             this.dgEntities = new System.Windows.Forms.DataGridView();
-            this.EntityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SQLServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataBase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlEntityDetails = new System.Windows.Forms.Panel();
@@ -51,6 +46,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtEntityName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtShortName = new System.Windows.Forms.TextBox();
+            this.EntityName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SQLServer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataBase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShortName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgEntities)).BeginInit();
             this.pnlEntityDetails.SuspendLayout();
             this.SuspendLayout();
@@ -65,56 +68,23 @@
             this.SQLServer,
             this.DataBase,
             this.UserName,
-            this.Password});
+            this.Password,
+            this.ShortName});
             this.dgEntities.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgEntities.Location = new System.Drawing.Point(0, 0);
             this.dgEntities.Name = "dgEntities";
             this.dgEntities.ReadOnly = true;
-            this.dgEntities.Size = new System.Drawing.Size(769, 371);
+            this.dgEntities.RowHeadersWidth = 102;
+            this.dgEntities.Size = new System.Drawing.Size(894, 371);
             this.dgEntities.TabIndex = 0;
             this.dgEntities.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgEntities_CellDoubleClick);
-            // 
-            // EntityName
-            // 
-            this.EntityName.HeaderText = "Business Entity Name";
-            this.EntityName.Name = "EntityName";
-            this.EntityName.ReadOnly = true;
-            this.EntityName.Width = 300;
-            // 
-            // SQLServer
-            // 
-            this.SQLServer.HeaderText = "SQL Server Name";
-            this.SQLServer.Name = "SQLServer";
-            this.SQLServer.ReadOnly = true;
-            this.SQLServer.Width = 200;
-            // 
-            // DataBase
-            // 
-            this.DataBase.HeaderText = "Data Base Name";
-            this.DataBase.Name = "DataBase";
-            this.DataBase.ReadOnly = true;
-            this.DataBase.Width = 200;
-            // 
-            // UserName
-            // 
-            this.UserName.HeaderText = "User";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Visible = false;
-            // 
-            // Password
-            // 
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            this.Password.Visible = false;
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(661, 386);
+            this.btnCancel.Location = new System.Drawing.Point(734, 386);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(96, 52);
             this.btnCancel.TabIndex = 4;
@@ -139,6 +109,8 @@
             // 
             // pnlEntityDetails
             // 
+            this.pnlEntityDetails.Controls.Add(this.txtShortName);
+            this.pnlEntityDetails.Controls.Add(this.label6);
             this.pnlEntityDetails.Controls.Add(this.btnCancelEntity);
             this.pnlEntityDetails.Controls.Add(this.btnSaveEntity);
             this.pnlEntityDetails.Controls.Add(this.btnTest);
@@ -152,9 +124,9 @@
             this.pnlEntityDetails.Controls.Add(this.label2);
             this.pnlEntityDetails.Controls.Add(this.txtEntityName);
             this.pnlEntityDetails.Controls.Add(this.label1);
-            this.pnlEntityDetails.Location = new System.Drawing.Point(52, 68);
+            this.pnlEntityDetails.Location = new System.Drawing.Point(110, 85);
             this.pnlEntityDetails.Name = "pnlEntityDetails";
-            this.pnlEntityDetails.Size = new System.Drawing.Size(664, 179);
+            this.pnlEntityDetails.Size = new System.Drawing.Size(664, 220);
             this.pnlEntityDetails.TabIndex = 5;
             // 
             // btnCancelEntity
@@ -162,10 +134,10 @@
             this.btnCancelEntity.BackColor = System.Drawing.Color.Red;
             this.btnCancelEntity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelEntity.ForeColor = System.Drawing.Color.White;
-            this.btnCancelEntity.Location = new System.Drawing.Point(574, 144);
+            this.btnCancelEntity.Location = new System.Drawing.Point(574, 181);
             this.btnCancelEntity.Name = "btnCancelEntity";
             this.btnCancelEntity.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelEntity.TabIndex = 12;
+            this.btnCancelEntity.TabIndex = 13;
             this.btnCancelEntity.Text = "F2-Cancel";
             this.btnCancelEntity.UseVisualStyleBackColor = false;
             this.btnCancelEntity.Click += new System.EventHandler(this.btnCancelEntity_Click);
@@ -174,10 +146,10 @@
             // 
             this.btnSaveEntity.BackColor = System.Drawing.Color.Lime;
             this.btnSaveEntity.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveEntity.Location = new System.Drawing.Point(16, 144);
+            this.btnSaveEntity.Location = new System.Drawing.Point(21, 181);
             this.btnSaveEntity.Name = "btnSaveEntity";
             this.btnSaveEntity.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveEntity.TabIndex = 11;
+            this.btnSaveEntity.TabIndex = 12;
             this.btnSaveEntity.Text = "F1-Save";
             this.btnSaveEntity.UseVisualStyleBackColor = false;
             this.btnSaveEntity.Click += new System.EventHandler(this.btnSaveEntity_Click);
@@ -189,7 +161,7 @@
             this.btnTest.Location = new System.Drawing.Point(377, 38);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(272, 45);
-            this.btnTest.TabIndex = 10;
+            this.btnTest.TabIndex = 14;
             this.btnTest.Text = "&Test Connection";
             this.btnTest.UseVisualStyleBackColor = false;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
@@ -289,11 +261,82 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Entity Name";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(18, 151);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Global Short Name";
+            // 
+            // txtShortName
+            // 
+            this.txtShortName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtShortName.Location = new System.Drawing.Point(137, 148);
+            this.txtShortName.MaxLength = 5;
+            this.txtShortName.Name = "txtShortName";
+            this.txtShortName.Size = new System.Drawing.Size(66, 20);
+            this.txtShortName.TabIndex = 11;
+            this.txtShortName.TextChanged += new System.EventHandler(this.txtShortName_TextChanged);
+            this.txtShortName.Enter += new System.EventHandler(this.txtShortName_Enter);
+            // 
+            // EntityName
+            // 
+            this.EntityName.HeaderText = "Business Entity Name";
+            this.EntityName.MinimumWidth = 12;
+            this.EntityName.Name = "EntityName";
+            this.EntityName.ReadOnly = true;
+            this.EntityName.Width = 300;
+            // 
+            // SQLServer
+            // 
+            this.SQLServer.HeaderText = "SQL Server Name";
+            this.SQLServer.MinimumWidth = 12;
+            this.SQLServer.Name = "SQLServer";
+            this.SQLServer.ReadOnly = true;
+            this.SQLServer.Width = 200;
+            // 
+            // DataBase
+            // 
+            this.DataBase.HeaderText = "Data Base Name";
+            this.DataBase.MinimumWidth = 12;
+            this.DataBase.Name = "DataBase";
+            this.DataBase.ReadOnly = true;
+            this.DataBase.Width = 200;
+            // 
+            // UserName
+            // 
+            this.UserName.HeaderText = "User";
+            this.UserName.MinimumWidth = 12;
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Visible = false;
+            this.UserName.Width = 250;
+            // 
+            // Password
+            // 
+            this.Password.HeaderText = "Password";
+            this.Password.MinimumWidth = 12;
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            this.Password.Visible = false;
+            this.Password.Width = 250;
+            // 
+            // ShortName
+            // 
+            this.ShortName.HeaderText = "Global Short Name";
+            this.ShortName.MinimumWidth = 50;
+            this.ShortName.Name = "ShortName";
+            this.ShortName.ReadOnly = true;
+            this.ShortName.Width = 70;
+            // 
             // frmBusinessEntities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 450);
+            this.ClientSize = new System.Drawing.Size(894, 445);
             this.Controls.Add(this.pnlEntityDetails);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -314,11 +357,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgEntities;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EntityName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SQLServer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataBase;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlEntityDetails;
@@ -335,5 +373,13 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtServer;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EntityName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SQLServer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataBase;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Password;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShortName;
+        private System.Windows.Forms.TextBox txtShortName;
+        private System.Windows.Forms.Label label6;
     }
 }

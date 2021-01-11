@@ -205,25 +205,46 @@ namespace UNITYSaleYardFiles
 
         private Boolean Save_SaleYard_Parameters()
         {
+            Boolean isOk = false;
             Boolean isSuccessful = true;
             String ParameterFolder = parameterFile.Substring(0, 21);
 
             try
             {
-                if (File.Exists(parameterFile) == true)
-                    File.Delete(parameterFile);
-
-                if (dgSaleYards.Rows.Count > 0)
+                if (Directory.Exists("C:\\UNITY\\SaleYardParameters") == false)
                 {
-                    if (Directory.Exists(ParameterFolder) == false)
-                        Directory.CreateDirectory(ParameterFolder);
-
-                    using (StreamWriter SaleYardFile = new StreamWriter(parameterFile))
+                    try
                     {
-                        for (int i = 0; i < dgSaleYards.Rows.Count; i++)
+                        Directory.CreateDirectory("C:\\UNITY\\SaleYardParameters");
+                        isOk = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(messageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    isOk = true;
+                }
+
+                if (isOk == true)
+                {
+                    if (File.Exists(parameterFile) == true)
+                        File.Delete(parameterFile);
+
+                    if (dgSaleYards.Rows.Count > 0)
+                    {
+                        if (Directory.Exists(ParameterFolder) == false)
+                            Directory.CreateDirectory(ParameterFolder);
+
+                        using (StreamWriter SaleYardFile = new StreamWriter(parameterFile))
                         {
-                            String myLine = dgSaleYards.Rows[i].Cells[0].Value.ToString() + "," + dgSaleYards.Rows[i].Cells[1].Value.ToString();
-                            SaleYardFile.WriteLine(myLine);
+                            for (int i = 0; i < dgSaleYards.Rows.Count; i++)
+                            {
+                                String myLine = dgSaleYards.Rows[i].Cells[0].Value.ToString() + "," + dgSaleYards.Rows[i].Cells[1].Value.ToString();
+                                SaleYardFile.WriteLine(myLine);
+                            }
                         }
                     }
                 }

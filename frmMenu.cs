@@ -372,6 +372,7 @@ namespace UNITYSaleYardFiles
                             myEntity.DataBaseName = myLine[2];
                             myEntity.UserName = myLine[3];
                             myEntity.Password = myLine[4];
+                            myEntity.ShortName = myLine[5];
                             BusinessEntities.Add(myEntity);
                         }
 
@@ -537,6 +538,7 @@ namespace UNITYSaleYardFiles
         public String UserName;
         public String Password;
         public SqlConnection MyConnection;
+        public String ShortName;
     }
 
 }
