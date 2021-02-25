@@ -53,17 +53,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbBEntity = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbNewBEntity = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Location = new System.Drawing.Point(6, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.Size = new System.Drawing.Size(128, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Current Entity";
+            this.label1.Text = "Current Vendor Entity";
             // 
             // cmbEntity
             // 
@@ -79,7 +83,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 49);
+            this.label2.Location = new System.Drawing.Point(6, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 13);
             this.label2.TabIndex = 2;
@@ -107,7 +111,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 186);
+            this.label3.Location = new System.Drawing.Point(6, 186);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 13);
             this.label3.TabIndex = 5;
@@ -133,7 +137,7 @@
             // txtBuyer
             // 
             this.txtBuyer.BackColor = System.Drawing.SystemColors.Info;
-            this.txtBuyer.Location = new System.Drawing.Point(140, 262);
+            this.txtBuyer.Location = new System.Drawing.Point(140, 336);
             this.txtBuyer.Multiline = true;
             this.txtBuyer.Name = "txtBuyer";
             this.txtBuyer.ReadOnly = true;
@@ -143,7 +147,7 @@
             // txtBuyerCode
             // 
             this.txtBuyerCode.Enabled = false;
-            this.txtBuyerCode.Location = new System.Drawing.Point(140, 236);
+            this.txtBuyerCode.Location = new System.Drawing.Point(140, 310);
             this.txtBuyerCode.Name = "txtBuyerCode";
             this.txtBuyerCode.Size = new System.Drawing.Size(70, 20);
             this.txtBuyerCode.TabIndex = 9;
@@ -152,7 +156,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 239);
+            this.label4.Location = new System.Drawing.Point(12, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 8;
@@ -164,9 +168,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(396, 19);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 13);
+            this.label5.Size = new System.Drawing.Size(112, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "New &Entity";
+            this.label5.Text = "New Vendor &Entity";
             // 
             // cmbNewEntity
             // 
@@ -181,7 +185,7 @@
             // txtNewBuyerDetails
             // 
             this.txtNewBuyerDetails.BackColor = System.Drawing.SystemColors.Info;
-            this.txtNewBuyerDetails.Location = new System.Drawing.Point(524, 262);
+            this.txtNewBuyerDetails.Location = new System.Drawing.Point(524, 336);
             this.txtNewBuyerDetails.Multiline = true;
             this.txtNewBuyerDetails.Name = "txtNewBuyerDetails";
             this.txtNewBuyerDetails.ReadOnly = true;
@@ -191,7 +195,7 @@
             // txtNewBuyerCode
             // 
             this.txtNewBuyerCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNewBuyerCode.Location = new System.Drawing.Point(524, 236);
+            this.txtNewBuyerCode.Location = new System.Drawing.Point(524, 310);
             this.txtNewBuyerCode.Name = "txtNewBuyerCode";
             this.txtNewBuyerCode.Size = new System.Drawing.Size(70, 20);
             this.txtNewBuyerCode.TabIndex = 20;
@@ -202,7 +206,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(396, 239);
+            this.label6.Location = new System.Drawing.Point(396, 313);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 19;
@@ -272,7 +276,7 @@
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.Image")));
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUpdate.Location = new System.Drawing.Point(399, 377);
+            this.btnUpdate.Location = new System.Drawing.Point(399, 450);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(91, 61);
             this.btnUpdate.TabIndex = 22;
@@ -286,7 +290,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(626, 377);
+            this.btnCancel.Location = new System.Drawing.Point(626, 450);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 61);
             this.btnCancel.TabIndex = 23;
@@ -295,11 +299,55 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(12, 284);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 13);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Current Buyer Entity";
+            // 
+            // cmbBEntity
+            // 
+            this.cmbBEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBEntity.Enabled = false;
+            this.cmbBEntity.FormattingEnabled = true;
+            this.cmbBEntity.Location = new System.Drawing.Point(140, 281);
+            this.cmbBEntity.Name = "cmbBEntity";
+            this.cmbBEntity.Size = new System.Drawing.Size(193, 21);
+            this.cmbBEntity.TabIndex = 25;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(396, 284);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(104, 13);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "New Buyer &Entity";
+            // 
+            // cmbNewBEntity
+            // 
+            this.cmbNewBEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbNewBEntity.FormattingEnabled = true;
+            this.cmbNewBEntity.Location = new System.Drawing.Point(524, 281);
+            this.cmbNewBEntity.Name = "cmbNewBEntity";
+            this.cmbNewBEntity.Size = new System.Drawing.Size(193, 21);
+            this.cmbNewBEntity.TabIndex = 27;
+            this.cmbNewBEntity.SelectedValueChanged += new System.EventHandler(this.cmbNewBEntity_SelectedValueChanged);
+            // 
             // frmEditLot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 443);
+            this.ClientSize = new System.Drawing.Size(800, 523);
+            this.Controls.Add(this.cmbNewBEntity);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.cmbBEntity);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtNewBuyerDetails);
@@ -361,5 +409,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cmbBEntity;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbNewBEntity;
     }
 }

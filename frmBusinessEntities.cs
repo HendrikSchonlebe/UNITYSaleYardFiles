@@ -219,7 +219,7 @@ namespace UNITYSaleYardFiles
         {
             if (processingMode == ADD_MODE)
             {
-                dgEntities.Rows.Add(txtEntityName.Text, txtServer.Text, txtDataBase.Text, txtUser.Text, txtPassword.Text);
+                dgEntities.Rows.Add(txtEntityName.Text, txtServer.Text, txtDataBase.Text, txtUser.Text, txtPassword.Text, txtShortName.Text);
                 processingMode = BROWSE_MODE;
                 pnlEntityDetails.Visible = false;
             }

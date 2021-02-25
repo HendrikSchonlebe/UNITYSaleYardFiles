@@ -114,6 +114,7 @@ namespace UNITYSaleYardFiles
                     {
                         if (Parse_Table())
                         {
+                            this.Hide();
                             this.Cursor = Cursors.Default;
                             MessageBox.Show(MessageHeader + "Sale Yard File Loaded & Parsed !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             this.Close();
@@ -166,6 +167,9 @@ namespace UNITYSaleYardFiles
         private Boolean Load_File()
         {
             Boolean isSuccessful = true;
+            
+            if (MessageBox.Show(MessageHeader + "Is this a Forbes Store Cattle Sale with Weights ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                myParent.isStoreSale = true;
 
             lblProgress.Text = "Wait - Loading Sale Lots";
             lblProgress.Visible = true;
@@ -173,7 +177,7 @@ namespace UNITYSaleYardFiles
 
             if (saleYardFileFormat == "Livestock Exchange - TXT format")
             {
-                isSuccessful = Load_Livestock_Exchange_txt_file();
+                isSuccessful = Load_Livestock_Exchange_txt_file(myParent.isStoreSale);
             }
             else
             {
@@ -183,16 +187,36 @@ namespace UNITYSaleYardFiles
 
             return isSuccessful;
         }
-        private Boolean Load_Livestock_Exchange_txt_file()
+        private Boolean Load_Livestock_Exchange_txt_file(Boolean isStoreSale)
         {
             Boolean isSuccessful = true;
+            Double priceFactor = 1000;
 
             try
             {
+                if (isStoreSale)
+                    priceFactor = 100;
+
                 String[] SaleYardLines = File.ReadAllLines(txtSaleYardFile.Text.Trim());
                 foreach (String myLine in SaleYardLines)
                 {
                     String[] thisLot = myLine.Split(',');
+                    Double myPrice = Convert.ToDouble(thisLot[5].Trim());
+
+                    if (myPrice == 0)
+                    {
+                        if (isStoreSale)
+                            myPrice = (Convert.ToDouble(thisLot[6].Trim()) / Convert.ToInt32(thisLot[3].Trim()));
+                        else if (Convert.ToDouble(thisLot[4].Trim()) == 0)
+                            myPrice = Convert.ToDouble(thisLot[6].Trim()) / Convert.ToInt32(thisLot[3].Trim());
+                        else
+                            myPrice = Convert.ToDouble(thisLot[6].Trim()) / Convert.ToDouble(thisLot[4].Trim());
+                    }
+                    else
+                    {
+                        if (isStoreSale)
+                            myPrice = myPrice * 10;
+                    }
 
                     thisLot[10] = myParent.SymbolStrip(thisLot[10].Trim(), "\"");
                     
@@ -210,12 +234,14 @@ namespace UNITYSaleYardFiles
                         myParent.SymbolStrip(thisLot[2].Trim(), "\""),     // Descriptor Code
                         "",                                                // Descriptor Description
                         Convert.ToDouble(thisLot[4].Trim()) / 10,          // Kgs
-                        Convert.ToDouble(thisLot[5].Trim()) / 1000,        // Price
+                        myPrice / priceFactor,                             // Price
                         Convert.ToDouble(thisLot[6].Trim()) / 100,         // Value
                         myParent.SymbolStrip(thisLot[10].Trim(), "\""),    // Vendor Code
                         "",                                                // Vendor Name
+                        "",                                                // Vendor Entity 
                         myParent.SymbolStrip(thisLot[11].Trim(), "\""),    // Buyer Code
                         "",                                                // Buyer Name
+                        "",                                                // Buyer Entity 
                         myParent.SymbolStrip(thisLot[13].Trim(), "\""),    // PIC
                         myParent.SymbolStrip(thisLot[14].Trim(), "\""),    // Ways
                         myParent.SymbolStrip(thisLot[16].Trim(), "\"")     // Marks
@@ -285,11 +311,11 @@ namespace UNITYSaleYardFiles
                 {
                     vendorTable.Load(rdrGetV);
                     myParent.dgUnallocated.Rows[myRow].Cells["VendorName"].Value = vendorTable.Rows[0]["lmast_name1"].ToString();
-                    myParent.dgUnallocated.Rows[myRow].Cells["Entity"].Value = MyEntities[currentEntity].BusinessEntityName;
+                    myParent.dgUnallocated.Rows[myRow].Cells["VEntity"].Value = MyEntities[currentEntity].BusinessEntityName;
                 }
                 else
                 {
-                    myParent.dgUnallocated.Rows[myRow].Cells["Entity"].Value = string.Empty;
+                    myParent.dgUnallocated.Rows[myRow].Cells["VEntity"].Value = string.Empty;
                     isSuccessful = false;
                 }
                 rdrGetV.Close();
@@ -306,6 +332,7 @@ namespace UNITYSaleYardFiles
                     {
                         buyerTable.Load(rdrGetB);
                         myParent.dgUnallocated.Rows[myRow].Cells["BuyerName"].Value = buyerTable.Rows[0]["lmast_name1"].ToString();
+                        myParent.dgUnallocated.Rows[myRow].Cells["BEntity"].Value = MyEntities[currentEntity].BusinessEntityName;
                     }
                     rdrGetB.Close();
                     cmdGetB.Dispose();
@@ -324,7 +351,8 @@ namespace UNITYSaleYardFiles
                                 {
                                     buyerTable.Clear();
                                     buyerTable.Load(rdrGetBO);
-                                    myParent.dgUnallocated.Rows[myRow].Cells["BuyerName"].Value = "Client of " + MyEntities[i].BusinessEntityName.Trim();
+                                    myParent.dgUnallocated.Rows[myRow].Cells["BuyerName"].Value = buyerTable.Rows[0]["lmast_name1"].ToString();
+                                    myParent.dgUnallocated.Rows[myRow].Cells["BEntity"].Value = MyEntities[i].BusinessEntityName.Trim();
                                 }
                                 rdrGetBO.Close();
                                 cmdGetBO.Dispose();
@@ -378,7 +406,8 @@ namespace UNITYSaleYardFiles
                             myParent.dgUnallocated.Rows[myRow].Cells[11].Value,
                             myParent.dgUnallocated.Rows[myRow].Cells[12].Value,
                             myParent.dgUnallocated.Rows[myRow].Cells[13].Value,
-                            myParent.dgUnallocated.Rows[myRow].Cells[14].Value
+                            myParent.dgUnallocated.Rows[myRow].Cells[14].Value,
+                            myParent.dgUnallocated.Rows[myRow].Cells[15].Value
                             );
                     else if (currentEntity == 1)
                         myParent.dgEntity2.Rows.Add(
@@ -396,7 +425,8 @@ namespace UNITYSaleYardFiles
                             myParent.dgUnallocated.Rows[myRow].Cells[11].Value,
                             myParent.dgUnallocated.Rows[myRow].Cells[12].Value,
                             myParent.dgUnallocated.Rows[myRow].Cells[13].Value,
-                            myParent.dgUnallocated.Rows[myRow].Cells[14].Value
+                            myParent.dgUnallocated.Rows[myRow].Cells[14].Value,
+                            myParent.dgUnallocated.Rows[myRow].Cells[15].Value
                             );
 
                 }

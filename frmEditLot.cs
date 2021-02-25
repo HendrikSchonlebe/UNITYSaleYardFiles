@@ -20,7 +20,9 @@ namespace UNITYSaleYardFiles
         public Int32 currentRowIndex;
 
         private String messageHeader = "** Operator ! **\r\n\r\n";
+        private Int32 currentBuyerEntityIndex;
         private Int32 newEntityIndex;
+        private Int32 newBuyerEntityIndex;
         private String clientShartName = string.Empty;
 
         public frmEditLot()
@@ -38,11 +40,40 @@ namespace UNITYSaleYardFiles
             for (int i = 0; i < myEntities.Count; i++)
                 cmbEntity.Items.Add(myEntities[i].BusinessEntityName);
             cmbEntity.Text = cmbEntity.Items[currentEntityIndex + 1].ToString();
+            cmbBEntity.Items.Clear();
+            cmbBEntity.Items.Add("(not selected)");
+            for (int i = 0; i < myEntities.Count; i++)
+                cmbBEntity.Items.Add(myEntities[i].BusinessEntityName);
+            cmbBEntity.Text = cmbBEntity.Items[0].ToString();
+            currentBuyerEntityIndex = 0;
+            for (int i = 0; i < cmbBEntity.Items.Count; i++)
+            {
+                if (cmbBEntity.Items[i].ToString() == parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BEntity"].Value.ToString())
+                {
+                    cmbBEntity.Text = cmbBEntity.Items[i].ToString();
+                    currentBuyerEntityIndex = i;
+                    break;
+                }
+            }
             cmbNewEntity.Items.Clear();
             cmbNewEntity.Items.Add("(not selected)");
             for (int i = 0; i < myEntities.Count; i++)
                 cmbNewEntity.Items.Add(myEntities[i].BusinessEntityName);
             cmbNewEntity.Text = cmbNewEntity.Items[currentEntityIndex + 1].ToString();
+            cmbNewBEntity.Items.Clear();
+            cmbNewBEntity.Items.Add("(not selected)");
+            for (int i = 0; i < myEntities.Count; i++)
+                cmbNewBEntity.Items.Add(myEntities[i].BusinessEntityName);
+            cmbNewBEntity.Text = cmbNewEntity.Items[0].ToString();
+            for (int i = 0; i < cmbBEntity.Items.Count; i++)
+            {
+                if (cmbNewBEntity.Items[i].ToString() == parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BEntity"].Value.ToString())
+                {
+                    cmbNewBEntity.Text = cmbNewBEntity.Items[i].ToString();
+                    newBuyerEntityIndex = i;
+                    break;
+                }
+            }
             txtVendorCode.Text = parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorCode"].Value.ToString();
             txtNewVendorCode.Text = parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorCode"].Value.ToString();
             if (currentEntityIndex >= 0)
@@ -143,6 +174,22 @@ namespace UNITYSaleYardFiles
 
             return newIndex;
         }
+        private Int32 Get_New_Buyer_Entity_Index()
+        {
+            Int32 newIndex = -1;
+
+            for (int i = 0; i < myEntities.Count; i++)
+            {
+                if (cmbNewBEntity.Text.Trim() == myEntities[i].BusinessEntityName.Trim())
+                {
+                    newBuyerEntityIndex = i;
+                    newIndex = i;
+                    break;
+                }
+            }
+
+            return newIndex;
+        }
         private void Validate_Vendor()
         {
             DataTable myVendor = new DataTable();
@@ -203,7 +250,7 @@ namespace UNITYSaleYardFiles
             try
             {
                 String strSQL = "SELECT * FROM tblLSMaster WHERE lmast_sname = '" + txtNewBuyerCode.Text.Trim() + "'";
-                SqlCommand cmdGet = new SqlCommand(strSQL, myEntities[newEntityIndex].MyConnection);
+                SqlCommand cmdGet = new SqlCommand(strSQL, myEntities[newBuyerEntityIndex].MyConnection);
                 SqlDataReader rdrGet = cmdGet.ExecuteReader();
                 if (rdrGet.HasRows)
                 {
@@ -260,6 +307,26 @@ namespace UNITYSaleYardFiles
                 Validate_Descriptor();
             }
         }
+        private void cmbNewBEntity_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cmbNewBEntity.Text != cmbNewBEntity.Items[0].ToString())
+            {
+                // Get New Entity Index
+                if (Get_New_Buyer_Entity_Index() >= 0)
+                {
+                    // Validate Buyer
+                    Validate_Buyer();
+                }
+                else
+                {
+                    txtNewBuyerDetails.Text = string.Empty;
+                }
+            }
+            else
+            {
+                txtNewBuyerDetails.Text = string.Empty;
+            }
+        }
         private void txtNewBuyerCode_Enter(object sender, EventArgs e)
         {
             SendKeys.Send("{Home}+{End}");
@@ -268,7 +335,7 @@ namespace UNITYSaleYardFiles
         {
             if (txtNewBuyerCode.Text.Trim().Length < 3)
             {
-                if (Browse_Clients(txtNewBuyerCode.Text))
+                if (Browse_Buyers(txtNewBuyerCode.Text))
                 {
                     txtNewBuyerCode.Text = clientShartName;
                     Validate_Buyer();
@@ -285,6 +352,22 @@ namespace UNITYSaleYardFiles
 
             frmClientBrowse myClients = new frmClientBrowse();
             myClients.myConnection = myEntities[newEntityIndex].MyConnection;
+            myClients.searchKey = searchKey;
+            if (myClients.ShowDialog() == DialogResult.OK)
+            {
+                clientShartName = myClients.returnKey;
+                clientSelected = true;
+            }
+            myClients.Close();
+
+            return clientSelected;
+        }
+        private Boolean Browse_Buyers(String searchKey)
+        {
+            Boolean clientSelected = false;
+
+            frmClientBrowse myClients = new frmClientBrowse();
+            myClients.myConnection = myEntities[newBuyerEntityIndex].MyConnection;
             myClients.searchKey = searchKey;
             if (myClients.ShowDialog() == DialogResult.OK)
             {
@@ -320,7 +403,7 @@ namespace UNITYSaleYardFiles
                     Int32 prevEntityIndex = -1;
                     for (int i = 1; i < cmbEntity.Items.Count; i++)
                     {
-                        if (cmbEntity.Text == parentForm.dgUnallocated.Rows[currentRowIndex].Cells["Entity"].Value.ToString())
+                        if (cmbEntity.Text == parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VEntity"].Value.ToString())
                         {
                             prevEntityIndex = i - 1;
                             break;
@@ -408,10 +491,11 @@ namespace UNITYSaleYardFiles
                             {
                                 parentForm.dgEntity1.Rows[i].Cells[7].Value = txtNewVendorCode.Text;
                                 parentForm.dgEntity1.Rows[i].Cells[8].Value = txtNewVendorDetails.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[9].Value = txtNewBuyerCode.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[10].Value = txtNewBuyerDetails.Text;
+                                parentForm.dgEntity1.Rows[i].Cells[10].Value = txtNewBuyerCode.Text;
+                                parentForm.dgEntity1.Rows[i].Cells[11].Value = txtNewBuyerDetails.Text;
                                 parentForm.dgEntity1.Rows[i].Cells[2].Value = txtNewDescriptorCode.Text;
                                 parentForm.dgEntity1.Rows[i].Cells[3].Value = txtNewDescriptor.Text;
+                                parentForm.dgEntity1.Rows[i].Cells[12].Value = cmbNewBEntity.Text;
                                 break;
                             }
                         }
@@ -439,10 +523,11 @@ namespace UNITYSaleYardFiles
                             {
                                 parentForm.dgEntity2.Rows[i].Cells[7].Value = txtNewVendorCode.Text;
                                 parentForm.dgEntity2.Rows[i].Cells[8].Value = txtNewVendorDetails.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[9].Value = txtNewBuyerCode.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[10].Value = txtNewBuyerDetails.Text;
+                                parentForm.dgEntity2.Rows[i].Cells[10].Value = txtNewBuyerCode.Text;
+                                parentForm.dgEntity2.Rows[i].Cells[11].Value = txtNewBuyerDetails.Text;
                                 parentForm.dgEntity2.Rows[i].Cells[2].Value = txtNewDescriptorCode.Text;
                                 parentForm.dgEntity2.Rows[i].Cells[3].Value = txtNewDescriptor.Text;
+                                parentForm.dgEntity2.Rows[i].Cells[12].Value = cmbNewBEntity.Text;
                                 break;
                             }
                         }
@@ -456,7 +541,8 @@ namespace UNITYSaleYardFiles
                 parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BuyerName"].Value = txtNewBuyerDetails.Text;
                 parentForm.dgUnallocated.Rows[currentRowIndex].Cells["DescriptorCode"].Value = txtNewDescriptorCode.Text;
                 parentForm.dgUnallocated.Rows[currentRowIndex].Cells["Descriptor"].Value = txtNewDescriptor.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["Entity"].Value = cmbNewEntity.Text;
+                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VEntity"].Value = cmbNewEntity.Text;
+                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BEntity"].Value = cmbNewBEntity.Text;
                 parentForm.dgUnallocated.Refresh();
 
                 if (cmbEntity.Text != cmbNewEntity.Text)                           
@@ -491,7 +577,8 @@ namespace UNITYSaleYardFiles
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value,
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value,
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value,
-                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value
+                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value,
+                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[15].Value
                     );
             }
             else if (newEntityIndex == 1)
@@ -511,7 +598,8 @@ namespace UNITYSaleYardFiles
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value,
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value,
                     parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value,
-                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value
+                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value,
+                    parentForm.dgUnallocated.Rows[currentRowIndex].Cells[15].Value
                     );
             }
         }
@@ -519,5 +607,6 @@ namespace UNITYSaleYardFiles
         {
             this.Close();
         }
+
     }
 }

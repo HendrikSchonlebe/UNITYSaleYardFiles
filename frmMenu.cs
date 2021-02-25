@@ -17,6 +17,8 @@ namespace UNITYSaleYardFiles
         const String SALEYARDSFILE = "C:\\UNITY\\SaleYardParameters\\SaleYards.ini";
         const String BUSINESSENTITYFILE = "C:\\UNITY\\SaleYardParameters\\BusinessEntities.ini";
 
+        public Boolean isStoreSale = false;
+
         private Boolean parametersSet = false;
         private String messageHeader = "** Operator ! **\r\n\r\n";
         private List<SaleYard> SaleYards = new List<SaleYard>();
@@ -49,13 +51,16 @@ namespace UNITYSaleYardFiles
                 rbClear.Enabled = false;
                 rbLoad.Enabled = false;
                 rbExport.Enabled = false;
+                rbAgentSale.Enabled = false;
             }
 
             tcEntities.Visible = false;
         }
         private void frmMenu_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if ((e.KeyCode == Keys.Escape) & (btnCancel.Visible == true))
+                btnCancel_Click(sender, e);
+            else if (e.KeyCode == Keys.Escape)
                 rbExit_DoubleClick(sender, e);
         }
         private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
@@ -131,6 +136,7 @@ namespace UNITYSaleYardFiles
                     rbClear.Enabled = false;
                     rbLoad.Enabled = false;
                     rbExport.Enabled = false;
+                    rbAgentSale.Enabled = false;
                     rtSetup.Enabled = true;
                 }
             }
@@ -152,7 +158,7 @@ namespace UNITYSaleYardFiles
         {
             if (e.RowIndex >= 0)
             {
-                if (dgUnallocated.Rows[e.RowIndex].Cells["Entity"].Value.ToString().Trim().Length > 0)
+                if (dgUnallocated.Rows[e.RowIndex].Cells["VEntity"].Value.ToString().Trim().Length > 0)
                 {
                     if (dgUnallocated.Rows[e.RowIndex].Cells["VendorName"].Value.ToString().Contains("** Check Entity **"))
                         dgUnallocated.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
@@ -208,7 +214,7 @@ namespace UNITYSaleYardFiles
             editLot.parentForm = this;
             editLot.mySaleYards = SaleYards;
             editLot.myEntities = BusinessEntities;
-            editLot.currentEntityIndex = Entity_Index(dgUnallocated.CurrentRow.Cells["Entity"].Value.ToString());
+            editLot.currentEntityIndex = Entity_Index(dgUnallocated.CurrentRow.Cells["VEntity"].Value.ToString());
             editLot.currentRowIndex = dgUnallocated.CurrentRow.Index;
             editLot.ShowDialog();
         }
@@ -478,6 +484,7 @@ namespace UNITYSaleYardFiles
         private Boolean Export_Sale(DataGridView myDataGrid)
         {
             Boolean isSuccessful = true;
+            Double priceFactor = 1000;
 
             try
             {
@@ -486,6 +493,9 @@ namespace UNITYSaleYardFiles
                 {
                     using (System.IO.StreamWriter exportFileSpec = new System.IO.StreamWriter(exportFile.FileName))
                     {
+                        if (isStoreSale)
+                            priceFactor = 100;
+
                         for (int i = 0; i < myDataGrid.Rows.Count; i++)
                         {
                             String myLine = myDataGrid.Rows[i].Cells[0].Value.ToString() + ",";
@@ -493,18 +503,18 @@ namespace UNITYSaleYardFiles
                             myLine += myDataGrid.Rows[i].Cells[2].Value.ToString() + ",";
                             myLine += myDataGrid.Rows[i].Cells[1].Value.ToString() + ",";
                             myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[4].Value) * 10).ToString() + ",";
-                            myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[5].Value) * 1000).ToString() + ",";
+                            myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[5].Value) * priceFactor).ToString() + ",";
                             myLine += (Convert.ToDouble(myDataGrid.Rows[i].Cells[6].Value) * 100).ToString() + ",";
                             myLine += ",";
                             myLine += ",";
                             myLine += ",";
                             myLine += myDataGrid.Rows[i].Cells[7].Value.ToString() + ",";
-                            myLine += myDataGrid.Rows[i].Cells[9].Value.ToString() + ",";
-                            myLine += ",";
-                            myLine += myDataGrid.Rows[i].Cells[11].Value.ToString() + ",";
-                            myLine += myDataGrid.Rows[i].Cells[12].Value.ToString() + ",";
+                            myLine += myDataGrid.Rows[i].Cells[10].Value.ToString() + ",";
                             myLine += ",";
                             myLine += myDataGrid.Rows[i].Cells[13].Value.ToString() + ",";
+                            myLine += myDataGrid.Rows[i].Cells[14].Value.ToString() + ",";
+                            myLine += ",";
+                            myLine += myDataGrid.Rows[i].Cells[15].Value.ToString() + ",";
                             exportFileSpec.WriteLine(myLine);
                         }
                     }
@@ -521,6 +531,329 @@ namespace UNITYSaleYardFiles
             }
 
             return isSuccessful;
+        }
+
+        private void tcEntities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcEntities.SelectedTab.Text == "All Entities")
+            {
+                rbAgentSale.Enabled = false;
+            }
+            else
+            {
+                if (dgEntity1.Visible == true)
+                    rbAgentSale.Enabled = HasOtherAgent_Client(tcEntities.SelectedTab.Text, dgEntity1);
+                else if (dgEntity2.Visible == true)
+                    rbAgentSale.Enabled = HasOtherAgent_Client(tcEntities.SelectedTab.Text, dgEntity2);
+                else if (dgEntity3.Visible == true)
+                    rbAgentSale.Enabled = HasOtherAgent_Client(tcEntities.SelectedTab.Text, dgEntity3);
+                else
+                    rbAgentSale.Enabled = false;
+            }
+        }
+        private Boolean HasOtherAgent_Client(String myEntity, DataGridView myGrid)
+        {
+            Boolean hasClients = false;
+
+            for (int i = 0; i < myGrid.Rows.Count; i++)
+            {
+                if (myGrid.Rows[i].Cells[12].Value.ToString() != myEntity)
+                {
+                    hasClients = true;
+                    break;
+                }
+            }
+
+            return hasClients;
+        }
+
+        private void rbAgentSale_Click(object sender, EventArgs e)
+        {
+            List<AccountSale> myACS = new List<AccountSale>();
+
+            DataGridView currentGrid = new DataGridView();
+            String currentEntityName = tcEntities.SelectedTab.Text;
+            String currentShortName = Get_Entity_Short_Name(currentEntityName);
+
+            // Set current Data Grid
+            if (dgEntity1.Visible == true)
+                currentGrid = dgEntity1;
+            else if (dgEntity2.Visible == true)
+                currentGrid = dgEntity2;
+            else if (dgEntity3.Visible == true)
+                currentGrid = dgEntity3;
+
+            for (int i = 0; i < currentGrid.Rows.Count; i++)
+            {
+                // Test if Buyer belongs to a different business entity than the Vendor
+                if (currentGrid.Rows[i].Cells[9].Value.ToString() != currentGrid.Rows[i].Cells[12].Value.ToString())
+                {
+                    AccountSale newACSRecord = new AccountSale();
+                    newACSRecord.LotNumber = currentGrid.Rows[i].Cells[0].Value.ToString();
+                    if (currentGrid.Rows[i].Cells[15].Value == null)
+                        newACSRecord.Marks = "";
+                    else
+                        newACSRecord.Marks = currentGrid.Rows[i].Cells[15].Value.ToString();
+                    newACSRecord.PIC = currentGrid.Rows[i].Cells[13].Value.ToString();
+                    newACSRecord.Price = Convert.ToDouble(currentGrid.Rows[i].Cells[5].Value.ToString());
+                    newACSRecord.Value = Convert.ToDouble(currentGrid.Rows[i].Cells[6].Value.ToString());
+                    newACSRecord.SourceBusinessEntityShortName = currentShortName;
+                    newACSRecord.VendorCode = currentShortName;
+                    newACSRecord.Ways = currentGrid.Rows[i].Cells[14].Value.ToString();
+                    newACSRecord.Weight = Convert.ToDouble(currentGrid.Rows[i].Cells[4].Value.ToString());
+                    newACSRecord.BuyerCode = currentGrid.Rows[i].Cells[10].Value.ToString();
+                    newACSRecord.DescriptorCode = currentGrid.Rows[i].Cells[2].Value.ToString();
+                    newACSRecord.DestinationBusinessEntityName = currentGrid.Rows[i].Cells[12].Value.ToString();
+                    newACSRecord.HeadCount = Convert.ToInt32(currentGrid.Rows[i].Cells[1].Value.ToString());
+                    newACSRecord.OriginalVendorCode = currentGrid.Rows[i].Cells[7].Value.ToString();
+                    newACSRecord.OriginalBuyerCode = currentGrid.Rows[i].Cells[10].Value.ToString();
+                    myACS.Add(newACSRecord);
+                }
+            }
+
+            if (myACS.Count > 0)
+            {
+                // Clear grid
+                dgAgentSale.Rows.Clear();
+
+                // Generate Destination Data
+                for (int i = 0; i < myACS.Count; i++)
+                {
+                    String myDescriptor = Get_Destination_Descriptor(myACS[i].DestinationBusinessEntityName, myACS[i].DescriptorCode);
+                    String myVendor = Get_Destination_Client(myACS[i].DestinationBusinessEntityName, myACS[i].SourceBusinessEntityShortName);
+                    String myBuyer = Get_Destination_Client(myACS[i].DestinationBusinessEntityName, myACS[i].BuyerCode);
+                    //Double myValue = 0;
+
+                    //if (myACS[i].Weight > 0)
+                    //    myValue = Math.Round(myACS[i].Weight * myACS[i].Price, 2);
+                    //else
+                    //    myValue = Math.Round(myACS[i].HeadCount * myACS[i].Price, 2);
+
+                    dgAgentSale.Rows.Add(myACS[i].LotNumber,
+                                         myACS[i].HeadCount,
+                                         myACS[i].DescriptorCode,
+                                         myDescriptor,
+                                         myACS[i].Weight,
+                                         myACS[i].Price,
+                                         myACS[i].Value,
+                                         myACS[i].SourceBusinessEntityShortName,
+                                         myVendor,
+                                         myACS[i].DestinationBusinessEntityName,
+                                         myACS[i].BuyerCode,
+                                         myBuyer,
+                                         myACS[i].DestinationBusinessEntityName,
+                                         myACS[i].PIC,
+                                         myACS[i].Ways,
+                                         myACS[i].Marks
+                                         );
+                }
+
+                dgAgentSale.Rows.Add();
+
+                // Generate Source Data
+                for (int i = 0; i < myACS.Count; i++)
+                {
+                    String newBuyerShortName = Get_Entity_Short_Name(myACS[i].DestinationBusinessEntityName);
+                    String myDescriptor = Get_Destination_Descriptor(currentEntityName, myACS[i].DescriptorCode);
+                    String myVendor = Get_Destination_Client(currentEntityName, myACS[i].OriginalVendorCode);
+                    String myBuyer = Get_Destination_Client(currentEntityName, newBuyerShortName);
+                    //Double myValue = 0;
+
+                    //if (myACS[i].Weight > 0)
+                    //    myValue = Math.Round(myACS[i].Weight * myACS[i].Price, 2);
+                    //else
+                    //    myValue = Math.Round(myACS[i].HeadCount * myACS[i].Price, 2);
+
+                    dgAgentSale.Rows.Add(myACS[i].LotNumber,
+                                         myACS[i].HeadCount,
+                                         myACS[i].DescriptorCode,
+                                         myDescriptor,
+                                         myACS[i].Weight,
+                                         myACS[i].Price,
+                                         myACS[i].Value,
+                                         myACS[i].OriginalVendorCode,
+                                         myVendor,
+                                         currentEntityName,
+                                         newBuyerShortName,
+                                         myBuyer,
+                                         currentEntityName,
+                                         myACS[i].PIC,
+                                         myACS[i].Ways,
+                                         myACS[i].Marks
+                                         );
+                }
+
+                pnlAgentSale.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("No records");
+            }
+        }
+
+        private String Get_Destination_Descriptor(String destBusinessEntity, String descCode)
+        {
+            String myDescriptor = string.Empty;
+            SqlConnection destConnection = new SqlConnection();
+
+            try
+            {
+                for (int i = 0; i < BusinessEntities.Count; i++)
+                {
+                    if (BusinessEntities[i].BusinessEntityName == destBusinessEntity)
+                    {
+                        destConnection = BusinessEntities[i].MyConnection;
+                        break;
+                    }
+                }
+
+                String strSQL = "SELECT * FROM tblLSSaleDescriptors WHERE sdesc_code = '" + descCode + "'";
+                SqlCommand cmdGet = new SqlCommand(strSQL, destConnection);
+                SqlDataReader rdrGet = cmdGet.ExecuteReader();
+                if (rdrGet.HasRows == true)
+                {
+                    DataTable myRecord = new DataTable();
+                    myRecord.Load(rdrGet);
+                    myDescriptor = myRecord.Rows[0]["sdesc_description"].ToString();
+                }
+                else
+                {
+                    myDescriptor = "** Not Found ! **";
+                }
+                rdrGet.Close();
+                cmdGet.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(messageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return myDescriptor;
+        }
+        private String Get_Destination_Client(String destEntity, String clientCode)
+        {
+            String myClient = string.Empty;
+            SqlConnection destConnection = new SqlConnection();
+
+            try
+            {
+                for (int i = 0; i < BusinessEntities.Count; i++)
+                {
+                    if (BusinessEntities[i].BusinessEntityName == destEntity)
+                    {
+                        destConnection = BusinessEntities[i].MyConnection;
+                        break;
+                    }
+                }
+
+                String strSQL = "SELECT * FROM tblLSMaster WHERE lmast_sname = '" + clientCode + "'";
+                SqlCommand cmdGet = new SqlCommand(strSQL, destConnection);
+                SqlDataReader rdrGet = cmdGet.ExecuteReader();
+                if (rdrGet.HasRows == true)
+                {
+                    DataTable myRecord = new DataTable();
+                    myRecord.Load(rdrGet);
+                    myClient = myRecord.Rows[0]["lmast_name1"].ToString();
+                }
+                else
+                {
+                    myClient = "** Not Found ! **";
+                }
+                rdrGet.Close();
+                cmdGet.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(messageHeader + ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return myClient;
+        }
+        private String Get_Entity_Short_Name(String entityName)
+        {
+            String myShortName = string.Empty;
+
+            for (int i = 0; i < BusinessEntities.Count; i++)
+            {
+                if (BusinessEntities[i].BusinessEntityName == entityName)
+                {
+                    myShortName = BusinessEntities[i].ShortName;
+                    break;
+                }
+            }
+
+            return myShortName;
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            Boolean destinationLoop = true;
+
+            for (int i = 0; i < dgAgentSale.Rows.Count; i++)
+            {
+                if (dgAgentSale.Rows[i].Cells[0].Value == null)
+                {
+                    destinationLoop = false;
+                }
+                else
+                {
+                    DataGridView destinationGrid = new DataGridView();
+
+                    if (dgAgentSale.Rows[i].Cells[9].Value.ToString() == tcEntities.TabPages[1].Text)
+                        destinationGrid = dgEntity1;
+                    else if (dgAgentSale.Rows[i].Cells[9].Value.ToString() == tcEntities.TabPages[2].Text)
+                        destinationGrid = dgEntity2;
+                    else if (dgAgentSale.Rows[i].Cells[9].Value.ToString() == tcEntities.TabPages[3].Text)
+                        destinationGrid = dgEntity3;
+
+                    if (destinationLoop == true)
+                    {
+                        destinationGrid.Rows.Add(dgAgentSale.Rows[i].Cells[0].Value,
+                                                 dgAgentSale.Rows[i].Cells[1].Value,
+                                                 dgAgentSale.Rows[i].Cells[2].Value,
+                                                 dgAgentSale.Rows[i].Cells[3].Value,
+                                                 dgAgentSale.Rows[i].Cells[4].Value,
+                                                 dgAgentSale.Rows[i].Cells[5].Value,
+                                                 dgAgentSale.Rows[i].Cells[6].Value,
+                                                 dgAgentSale.Rows[i].Cells[7].Value,
+                                                 dgAgentSale.Rows[i].Cells[8].Value,
+                                                 dgAgentSale.Rows[i].Cells[9].Value,
+                                                 dgAgentSale.Rows[i].Cells[10].Value,
+                                                 dgAgentSale.Rows[i].Cells[11].Value,
+                                                 dgAgentSale.Rows[i].Cells[12].Value,
+                                                 dgAgentSale.Rows[i].Cells[13].Value,
+                                                 dgAgentSale.Rows[i].Cells[14].Value,
+                                                 dgAgentSale.Rows[i].Cells[15].Value
+                            );
+                    }
+                    else
+                    {
+                        for (int j = 0; j < destinationGrid.Rows.Count; j++)
+                        {
+                            if (destinationGrid.Rows[j].Cells[12].Value.ToString() != dgAgentSale.Rows[i].Cells[12].Value.ToString())
+                            {
+                                if (destinationGrid.Rows[j].Cells[0].Value == dgAgentSale.Rows[i].Cells[0].Value)
+                                {
+                                    destinationGrid.Rows[j].Cells[10].Value = dgAgentSale.Rows[i].Cells[10].Value;
+                                    destinationGrid.Rows[j].Cells[11].Value = dgAgentSale.Rows[i].Cells[11].Value;
+                                    destinationGrid.Rows[j].Cells[12].Value = dgAgentSale.Rows[i].Cells[12].Value;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            dgAgentSale.Rows.Clear();
+            pnlAgentSale.Visible = false;
+            tcEntities_SelectedIndexChanged(sender, e);
+
+            MessageBox.Show(messageHeader + "Agent Sale Entries Created !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            dgAgentSale.Rows.Clear();
+            pnlAgentSale.Visible = false;
         }
     }
 
@@ -540,5 +873,22 @@ namespace UNITYSaleYardFiles
         public SqlConnection MyConnection;
         public String ShortName;
     }
-
+    public class AccountSale
+    {
+        public String DestinationBusinessEntityName;
+        public String SourceBusinessEntityShortName;
+        public String BuyerCode;
+        public String LotNumber;
+        public Int32 HeadCount;
+        public String DescriptorCode;
+        public Double Weight;
+        public Double Price;
+        public Double Value;
+        public String VendorCode;
+        public String PIC;
+        public String Ways;
+        public String Marks;
+        public String OriginalBuyerCode;
+        public String OriginalVendorCode;
+    }
 }

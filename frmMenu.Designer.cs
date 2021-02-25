@@ -41,6 +41,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.rtProcess = new System.Windows.Forms.RibbonTab();
             this.rpProcess = new System.Windows.Forms.RibbonPanel();
@@ -49,6 +53,8 @@
             this.rbLoad = new System.Windows.Forms.RibbonButton();
             this.rpExport = new System.Windows.Forms.RibbonPanel();
             this.rbExport = new System.Windows.Forms.RibbonButton();
+            this.rpAgentSale = new System.Windows.Forms.RibbonPanel();
+            this.rbAgentSale = new System.Windows.Forms.RibbonButton();
             this.rtSetup = new System.Windows.Forms.RibbonTab();
             this.rpSaleYards = new System.Windows.Forms.RibbonPanel();
             this.rbSaleYards = new System.Windows.Forms.RibbonButton();
@@ -69,12 +75,13 @@
             this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VendorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VendorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuyerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BuyerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ways = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Marks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Entity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgEntity1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,12 +93,13 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgEntity2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,12 +111,13 @@
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn45 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn48 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn49 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dgEntity3 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -120,10 +129,15 @@
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgEntity4 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -133,8 +147,13 @@
             this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn44 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.tabPage8 = new System.Windows.Forms.TabPage();
@@ -158,6 +177,26 @@
             this.lblStatistics = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.exportFile = new System.Windows.Forms.SaveFileDialog();
+            this.pnlAgentSale = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.dgAgentSale = new System.Windows.Forms.DataGridView();
+            this.ASLotNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASHead = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASDescriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASVendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASVendorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASVEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASBuyer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASBuyerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ADBEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASPIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASWays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ASMarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcEntities.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUnallocated)).BeginInit();
@@ -168,8 +207,10 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity3)).BeginInit();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEntity4)).BeginInit();
             this.pnlStatistics.SuspendLayout();
+            this.pnlAgentSale.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentSale)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -188,7 +229,7 @@
             this.ribbon1.OrbDropDown.TabIndex = 0;
             this.ribbon1.OrbVisible = false;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.ribbon1.Size = new System.Drawing.Size(1362, 180);
+            this.ribbon1.Size = new System.Drawing.Size(1540, 180);
             this.ribbon1.TabIndex = 0;
             this.ribbon1.Tabs.Add(this.rtProcess);
             this.ribbon1.Tabs.Add(this.rtSetup);
@@ -200,6 +241,7 @@
             this.rtProcess.Name = "rtProcess";
             this.rtProcess.Panels.Add(this.rpProcess);
             this.rtProcess.Panels.Add(this.rpExport);
+            this.rtProcess.Panels.Add(this.rpAgentSale);
             this.rtProcess.Text = "Process File";
             // 
             // rpProcess
@@ -251,6 +293,21 @@
             this.rbExport.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbExport.SmallImage")));
             this.rbExport.Text = "Export Sale Yard Files";
             this.rbExport.Click += new System.EventHandler(this.rbExport_Click);
+            // 
+            // rpAgentSale
+            // 
+            this.rpAgentSale.Items.Add(this.rbAgentSale);
+            this.rpAgentSale.Name = "rpAgentSale";
+            this.rpAgentSale.Text = "Agent Sale";
+            // 
+            // rbAgentSale
+            // 
+            this.rbAgentSale.Image = ((System.Drawing.Image)(resources.GetObject("rbAgentSale.Image")));
+            this.rbAgentSale.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbAgentSale.LargeImage")));
+            this.rbAgentSale.Name = "rbAgentSale";
+            this.rbAgentSale.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAgentSale.SmallImage")));
+            this.rbAgentSale.Text = "Generate Agent Sale Transactions";
+            this.rbAgentSale.Click += new System.EventHandler(this.rbAgentSale_Click);
             // 
             // rtSetup
             // 
@@ -327,8 +384,9 @@
             this.tcEntities.Location = new System.Drawing.Point(0, 180);
             this.tcEntities.Name = "tcEntities";
             this.tcEntities.SelectedIndex = 0;
-            this.tcEntities.Size = new System.Drawing.Size(1362, 601);
+            this.tcEntities.Size = new System.Drawing.Size(1540, 601);
             this.tcEntities.TabIndex = 1;
+            this.tcEntities.SelectedIndexChanged += new System.EventHandler(this.tcEntities_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -336,7 +394,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage1.Size = new System.Drawing.Size(1532, 575);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -356,17 +414,18 @@
             this.TotalValue,
             this.VendorCode,
             this.VendorName,
+            this.VEntity,
             this.BuyerCode,
             this.BuyerName,
+            this.BEntity,
             this.PIC,
             this.Ways,
-            this.Marks,
-            this.Entity});
+            this.Marks});
             this.dgUnallocated.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgUnallocated.Location = new System.Drawing.Point(3, 3);
             this.dgUnallocated.Name = "dgUnallocated";
-            this.dgUnallocated.RowHeadersWidth = 102;
-            this.dgUnallocated.Size = new System.Drawing.Size(1348, 569);
+            this.dgUnallocated.RowHeadersWidth = 30;
+            this.dgUnallocated.Size = new System.Drawing.Size(1526, 569);
             this.dgUnallocated.TabIndex = 2;
             this.dgUnallocated.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUnallocated_CellDoubleClick);
             this.dgUnallocated.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgUnallocated_CellMouseClick);
@@ -451,6 +510,12 @@
             this.VendorName.Name = "VendorName";
             this.VendorName.Width = 200;
             // 
+            // VEntity
+            // 
+            this.VEntity.HeaderText = "Entity";
+            this.VEntity.MinimumWidth = 12;
+            this.VEntity.Name = "VEntity";
+            // 
             // BuyerCode
             // 
             this.BuyerCode.HeaderText = "Buyer";
@@ -464,6 +529,12 @@
             this.BuyerName.MinimumWidth = 12;
             this.BuyerName.Name = "BuyerName";
             this.BuyerName.Width = 200;
+            // 
+            // BEntity
+            // 
+            this.BEntity.HeaderText = "Entity";
+            this.BEntity.MinimumWidth = 12;
+            this.BEntity.Name = "BEntity";
             // 
             // PIC
             // 
@@ -486,20 +557,13 @@
             this.Marks.Name = "Marks";
             this.Marks.Width = 50;
             // 
-            // Entity
-            // 
-            this.Entity.HeaderText = "Entity";
-            this.Entity.MinimumWidth = 12;
-            this.Entity.Name = "Entity";
-            this.Entity.Width = 150;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgEntity1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage2.Size = new System.Drawing.Size(1586, 575);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -518,17 +582,18 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn10,
             this.dataGridViewTextBoxColumn11,
+            this.Column1,
             this.dataGridViewTextBoxColumn12,
             this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15});
+            this.dataGridViewTextBoxColumn14});
             this.dgEntity1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgEntity1.Location = new System.Drawing.Point(3, 3);
             this.dgEntity1.Name = "dgEntity1";
-            this.dgEntity1.RowHeadersWidth = 102;
-            this.dgEntity1.Size = new System.Drawing.Size(1348, 569);
+            this.dgEntity1.RowHeadersWidth = 30;
+            this.dgEntity1.Size = new System.Drawing.Size(1580, 569);
             this.dgEntity1.TabIndex = 3;
             this.dgEntity1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEntity1_CellMouseClick);
             // 
@@ -611,6 +676,12 @@
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Width = 200;
             // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.HeaderText = "Entity";
+            this.dataGridViewTextBoxColumn15.MinimumWidth = 12;
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.HeaderText = "Buyer";
@@ -624,6 +695,11 @@
             this.dataGridViewTextBoxColumn11.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Width = 200;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Entity";
+            this.Column1.Name = "Column1";
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -646,19 +722,12 @@
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.Width = 50;
             // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.HeaderText = "Entity";
-            this.dataGridViewTextBoxColumn15.MinimumWidth = 12;
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.Width = 250;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dgEntity2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage3.Size = new System.Drawing.Size(1586, 575);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -677,17 +746,18 @@
             this.dataGridViewTextBoxColumn22,
             this.dataGridViewTextBoxColumn45,
             this.dataGridViewTextBoxColumn46,
+            this.dataGridViewTextBoxColumn52,
             this.dataGridViewTextBoxColumn47,
             this.dataGridViewTextBoxColumn48,
+            this.Column2,
             this.dataGridViewTextBoxColumn49,
             this.dataGridViewTextBoxColumn50,
-            this.dataGridViewTextBoxColumn51,
-            this.dataGridViewTextBoxColumn52});
+            this.dataGridViewTextBoxColumn51});
             this.dgEntity2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgEntity2.Location = new System.Drawing.Point(0, 0);
             this.dgEntity2.Name = "dgEntity2";
-            this.dgEntity2.RowHeadersWidth = 102;
-            this.dgEntity2.Size = new System.Drawing.Size(1354, 575);
+            this.dgEntity2.RowHeadersWidth = 30;
+            this.dgEntity2.Size = new System.Drawing.Size(1586, 575);
             this.dgEntity2.TabIndex = 3;
             this.dgEntity2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEntity2_CellMouseClick);
             // 
@@ -770,6 +840,12 @@
             this.dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
             this.dataGridViewTextBoxColumn46.Width = 200;
             // 
+            // dataGridViewTextBoxColumn52
+            // 
+            this.dataGridViewTextBoxColumn52.HeaderText = "Entity";
+            this.dataGridViewTextBoxColumn52.MinimumWidth = 12;
+            this.dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
+            // 
             // dataGridViewTextBoxColumn47
             // 
             this.dataGridViewTextBoxColumn47.HeaderText = "Buyer";
@@ -783,6 +859,11 @@
             this.dataGridViewTextBoxColumn48.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
             this.dataGridViewTextBoxColumn48.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Entity";
+            this.Column2.Name = "Column2";
             // 
             // dataGridViewTextBoxColumn49
             // 
@@ -805,19 +886,12 @@
             this.dataGridViewTextBoxColumn51.Name = "dataGridViewTextBoxColumn51";
             this.dataGridViewTextBoxColumn51.Width = 50;
             // 
-            // dataGridViewTextBoxColumn52
-            // 
-            this.dataGridViewTextBoxColumn52.HeaderText = "Entity";
-            this.dataGridViewTextBoxColumn52.MinimumWidth = 12;
-            this.dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
-            this.dataGridViewTextBoxColumn52.Width = 250;
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.dgEntity3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage4.Size = new System.Drawing.Size(1586, 575);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -836,13 +910,18 @@
             this.dataGridViewTextBoxColumn29,
             this.dataGridViewTextBoxColumn30,
             this.dataGridViewTextBoxColumn31,
+            this.Column3,
             this.dataGridViewTextBoxColumn32,
-            this.dataGridViewTextBoxColumn33});
+            this.dataGridViewTextBoxColumn33,
+            this.Column4,
+            this.Column5,
+            this.Column7,
+            this.Column6});
             this.dgEntity3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgEntity3.Location = new System.Drawing.Point(0, 0);
             this.dgEntity3.Name = "dgEntity3";
-            this.dgEntity3.RowHeadersWidth = 102;
-            this.dgEntity3.Size = new System.Drawing.Size(1354, 575);
+            this.dgEntity3.RowHeadersWidth = 30;
+            this.dgEntity3.Size = new System.Drawing.Size(1586, 575);
             this.dgEntity3.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn23
@@ -878,28 +957,28 @@
             this.dataGridViewTextBoxColumn27.HeaderText = "Kgs";
             this.dataGridViewTextBoxColumn27.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            this.dataGridViewTextBoxColumn27.Width = 250;
+            this.dataGridViewTextBoxColumn27.Width = 70;
             // 
             // dataGridViewTextBoxColumn28
             // 
             this.dataGridViewTextBoxColumn28.HeaderText = "Price";
             this.dataGridViewTextBoxColumn28.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
-            this.dataGridViewTextBoxColumn28.Width = 250;
+            this.dataGridViewTextBoxColumn28.Width = 70;
             // 
             // dataGridViewTextBoxColumn29
             // 
             this.dataGridViewTextBoxColumn29.HeaderText = "Value";
             this.dataGridViewTextBoxColumn29.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
-            this.dataGridViewTextBoxColumn29.Width = 250;
+            this.dataGridViewTextBoxColumn29.Width = 80;
             // 
             // dataGridViewTextBoxColumn30
             // 
             this.dataGridViewTextBoxColumn30.HeaderText = "Vendor ";
             this.dataGridViewTextBoxColumn30.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
-            this.dataGridViewTextBoxColumn30.Width = 250;
+            this.dataGridViewTextBoxColumn30.Width = 70;
             // 
             // dataGridViewTextBoxColumn31
             // 
@@ -908,12 +987,17 @@
             this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
             this.dataGridViewTextBoxColumn31.Width = 200;
             // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Entity";
+            this.Column3.Name = "Column3";
+            // 
             // dataGridViewTextBoxColumn32
             // 
             this.dataGridViewTextBoxColumn32.HeaderText = "Buyer";
             this.dataGridViewTextBoxColumn32.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-            this.dataGridViewTextBoxColumn32.Width = 250;
+            this.dataGridViewTextBoxColumn32.Width = 70;
             // 
             // dataGridViewTextBoxColumn33
             // 
@@ -922,21 +1006,44 @@
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             this.dataGridViewTextBoxColumn33.Width = 200;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Entity";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "PIC/PID";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 70;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Ways";
+            this.Column7.Name = "Column7";
+            this.Column7.Width = 50;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Marks";
+            this.Column6.Name = "Column6";
+            this.Column6.Width = 50;
+            // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.dataGridView1);
+            this.tabPage5.Controls.Add(this.dgEntity4);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage5.Size = new System.Drawing.Size(1586, 575);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgEntity4
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgEntity4.AllowUserToAddRows = false;
+            this.dgEntity4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEntity4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn34,
             this.dataGridViewTextBoxColumn35,
             this.dataGridViewTextBoxColumn36,
@@ -946,14 +1053,19 @@
             this.dataGridViewTextBoxColumn40,
             this.dataGridViewTextBoxColumn41,
             this.dataGridViewTextBoxColumn42,
+            this.Column8,
             this.dataGridViewTextBoxColumn43,
-            this.dataGridViewTextBoxColumn44});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 102;
-            this.dataGridView1.Size = new System.Drawing.Size(1354, 575);
-            this.dataGridView1.TabIndex = 4;
+            this.dataGridViewTextBoxColumn44,
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column12});
+            this.dgEntity4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgEntity4.Location = new System.Drawing.Point(0, 0);
+            this.dgEntity4.Name = "dgEntity4";
+            this.dgEntity4.RowHeadersWidth = 30;
+            this.dgEntity4.Size = new System.Drawing.Size(1586, 575);
+            this.dgEntity4.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn34
             // 
@@ -988,28 +1100,28 @@
             this.dataGridViewTextBoxColumn38.HeaderText = "Kgs";
             this.dataGridViewTextBoxColumn38.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
-            this.dataGridViewTextBoxColumn38.Width = 250;
+            this.dataGridViewTextBoxColumn38.Width = 70;
             // 
             // dataGridViewTextBoxColumn39
             // 
             this.dataGridViewTextBoxColumn39.HeaderText = "Price";
             this.dataGridViewTextBoxColumn39.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
-            this.dataGridViewTextBoxColumn39.Width = 250;
+            this.dataGridViewTextBoxColumn39.Width = 70;
             // 
             // dataGridViewTextBoxColumn40
             // 
             this.dataGridViewTextBoxColumn40.HeaderText = "Value";
             this.dataGridViewTextBoxColumn40.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
-            this.dataGridViewTextBoxColumn40.Width = 250;
+            this.dataGridViewTextBoxColumn40.Width = 80;
             // 
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.HeaderText = "Vendor ";
             this.dataGridViewTextBoxColumn41.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
-            this.dataGridViewTextBoxColumn41.Width = 250;
+            this.dataGridViewTextBoxColumn41.Width = 70;
             // 
             // dataGridViewTextBoxColumn42
             // 
@@ -1018,12 +1130,17 @@
             this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
             this.dataGridViewTextBoxColumn42.Width = 200;
             // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Entity";
+            this.Column8.Name = "Column8";
+            // 
             // dataGridViewTextBoxColumn43
             // 
             this.dataGridViewTextBoxColumn43.HeaderText = "Buyer";
             this.dataGridViewTextBoxColumn43.MinimumWidth = 12;
             this.dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
-            this.dataGridViewTextBoxColumn43.Width = 250;
+            this.dataGridViewTextBoxColumn43.Width = 70;
             // 
             // dataGridViewTextBoxColumn44
             // 
@@ -1032,11 +1149,34 @@
             this.dataGridViewTextBoxColumn44.Name = "dataGridViewTextBoxColumn44";
             this.dataGridViewTextBoxColumn44.Width = 200;
             // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Entity";
+            this.Column9.Name = "Column9";
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "PIC/PID";
+            this.Column10.Name = "Column10";
+            this.Column10.Width = 70;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Ways";
+            this.Column11.Name = "Column11";
+            this.Column11.Width = 50;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Marks";
+            this.Column12.Name = "Column12";
+            this.Column12.Width = 50;
+            // 
             // tabPage6
             // 
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage6.Size = new System.Drawing.Size(1586, 575);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1045,7 +1185,7 @@
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage7.Size = new System.Drawing.Size(1586, 575);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1054,7 +1194,7 @@
             // 
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage8.Size = new System.Drawing.Size(1586, 575);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1063,7 +1203,7 @@
             // 
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage9.Size = new System.Drawing.Size(1586, 575);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "tabPage9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -1072,7 +1212,7 @@
             // 
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1354, 575);
+            this.tabPage10.Size = new System.Drawing.Size(1586, 575);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1096,7 +1236,7 @@
             this.pnlStatistics.Controls.Add(this.txtLots);
             this.pnlStatistics.Controls.Add(this.lblStatistics);
             this.pnlStatistics.Controls.Add(this.label1);
-            this.pnlStatistics.Location = new System.Drawing.Point(466, 12);
+            this.pnlStatistics.Location = new System.Drawing.Point(463, 50);
             this.pnlStatistics.Name = "pnlStatistics";
             this.pnlStatistics.Size = new System.Drawing.Size(346, 282);
             this.pnlStatistics.TabIndex = 3;
@@ -1191,7 +1331,7 @@
             // 
             // txtKgs
             // 
-            this.txtKgs.Location = new System.Drawing.Point(228, 110);
+            this.txtKgs.Location = new System.Drawing.Point(243, 136);
             this.txtKgs.Name = "txtKgs";
             this.txtKgs.ReadOnly = true;
             this.txtKgs.Size = new System.Drawing.Size(100, 20);
@@ -1258,11 +1398,205 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Number of Lots";
             // 
+            // pnlAgentSale
+            // 
+            this.pnlAgentSale.Controls.Add(this.btnCancel);
+            this.pnlAgentSale.Controls.Add(this.btnCreate);
+            this.pnlAgentSale.Controls.Add(this.dgAgentSale);
+            this.pnlAgentSale.Location = new System.Drawing.Point(31, 120);
+            this.pnlAgentSale.Name = "pnlAgentSale";
+            this.pnlAgentSale.Size = new System.Drawing.Size(1445, 384);
+            this.pnlAgentSale.TabIndex = 3;
+            this.pnlAgentSale.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancel.Location = new System.Drawing.Point(1346, 327);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(96, 52);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Esc-Cancel";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreate.Image = ((System.Drawing.Image)(resources.GetObject("btnCreate.Image")));
+            this.btnCreate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCreate.Location = new System.Drawing.Point(14, 327);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(96, 52);
+            this.btnCreate.TabIndex = 3;
+            this.btnCreate.Text = "F1-Create";
+            this.btnCreate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // dgAgentSale
+            // 
+            this.dgAgentSale.AllowUserToAddRows = false;
+            this.dgAgentSale.AllowUserToDeleteRows = false;
+            this.dgAgentSale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAgentSale.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ASLotNo,
+            this.ASHead,
+            this.ASCode,
+            this.ASDescriptor,
+            this.ASWeight,
+            this.ASPrice,
+            this.ASValue,
+            this.ASVendor,
+            this.ASVendorName,
+            this.ASVEntity,
+            this.ASBuyer,
+            this.ASBuyerName,
+            this.ADBEntity,
+            this.ASPIC,
+            this.ASWays,
+            this.ASMarks});
+            this.dgAgentSale.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dgAgentSale.Location = new System.Drawing.Point(0, 0);
+            this.dgAgentSale.Name = "dgAgentSale";
+            this.dgAgentSale.ReadOnly = true;
+            this.dgAgentSale.Size = new System.Drawing.Size(1445, 321);
+            this.dgAgentSale.TabIndex = 0;
+            // 
+            // ASLotNo
+            // 
+            this.ASLotNo.HeaderText = "Lot #";
+            this.ASLotNo.Name = "ASLotNo";
+            this.ASLotNo.ReadOnly = true;
+            this.ASLotNo.Width = 60;
+            // 
+            // ASHead
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            dataGridViewCellStyle13.NullValue = null;
+            this.ASHead.DefaultCellStyle = dataGridViewCellStyle13;
+            this.ASHead.HeaderText = "Head";
+            this.ASHead.Name = "ASHead";
+            this.ASHead.ReadOnly = true;
+            this.ASHead.Width = 50;
+            // 
+            // ASCode
+            // 
+            this.ASCode.HeaderText = "Code";
+            this.ASCode.Name = "ASCode";
+            this.ASCode.ReadOnly = true;
+            this.ASCode.Width = 50;
+            // 
+            // ASDescriptor
+            // 
+            this.ASDescriptor.HeaderText = "Descriptor";
+            this.ASDescriptor.Name = "ASDescriptor";
+            this.ASDescriptor.ReadOnly = true;
+            // 
+            // ASWeight
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N1";
+            dataGridViewCellStyle14.NullValue = null;
+            this.ASWeight.DefaultCellStyle = dataGridViewCellStyle14;
+            this.ASWeight.HeaderText = "Kgs";
+            this.ASWeight.Name = "ASWeight";
+            this.ASWeight.ReadOnly = true;
+            this.ASWeight.Width = 70;
+            // 
+            // ASPrice
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "C3";
+            dataGridViewCellStyle15.NullValue = null;
+            this.ASPrice.DefaultCellStyle = dataGridViewCellStyle15;
+            this.ASPrice.HeaderText = "Price";
+            this.ASPrice.Name = "ASPrice";
+            this.ASPrice.ReadOnly = true;
+            this.ASPrice.Width = 70;
+            // 
+            // ASValue
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Format = "C2";
+            dataGridViewCellStyle16.NullValue = null;
+            this.ASValue.DefaultCellStyle = dataGridViewCellStyle16;
+            this.ASValue.HeaderText = "Value";
+            this.ASValue.Name = "ASValue";
+            this.ASValue.ReadOnly = true;
+            this.ASValue.Width = 80;
+            // 
+            // ASVendor
+            // 
+            this.ASVendor.HeaderText = "Vendor";
+            this.ASVendor.Name = "ASVendor";
+            this.ASVendor.ReadOnly = true;
+            this.ASVendor.Width = 60;
+            // 
+            // ASVendorName
+            // 
+            this.ASVendorName.HeaderText = "Vendor Name";
+            this.ASVendorName.Name = "ASVendorName";
+            this.ASVendorName.ReadOnly = true;
+            this.ASVendorName.Width = 200;
+            // 
+            // ASVEntity
+            // 
+            this.ASVEntity.HeaderText = "Entity";
+            this.ASVEntity.Name = "ASVEntity";
+            this.ASVEntity.ReadOnly = true;
+            // 
+            // ASBuyer
+            // 
+            this.ASBuyer.HeaderText = "Buyer";
+            this.ASBuyer.Name = "ASBuyer";
+            this.ASBuyer.ReadOnly = true;
+            this.ASBuyer.Width = 60;
+            // 
+            // ASBuyerName
+            // 
+            this.ASBuyerName.HeaderText = "Buyer Name";
+            this.ASBuyerName.Name = "ASBuyerName";
+            this.ASBuyerName.ReadOnly = true;
+            this.ASBuyerName.Width = 200;
+            // 
+            // ADBEntity
+            // 
+            this.ADBEntity.HeaderText = "Entity";
+            this.ADBEntity.Name = "ADBEntity";
+            this.ADBEntity.ReadOnly = true;
+            // 
+            // ASPIC
+            // 
+            this.ASPIC.HeaderText = "PIC/PID";
+            this.ASPIC.Name = "ASPIC";
+            this.ASPIC.ReadOnly = true;
+            this.ASPIC.Width = 80;
+            // 
+            // ASWays
+            // 
+            this.ASWays.HeaderText = "Ways";
+            this.ASWays.Name = "ASWays";
+            this.ASWays.ReadOnly = true;
+            this.ASWays.Width = 50;
+            // 
+            // ASMarks
+            // 
+            this.ASMarks.HeaderText = "Marks";
+            this.ASMarks.Name = "ASMarks";
+            this.ASMarks.ReadOnly = true;
+            this.ASMarks.Width = 50;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 781);
+            this.ClientSize = new System.Drawing.Size(1540, 781);
+            this.Controls.Add(this.pnlAgentSale);
             this.Controls.Add(this.pnlStatistics);
             this.Controls.Add(this.tcEntities);
             this.Controls.Add(this.ribbon1);
@@ -1284,9 +1618,11 @@
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgEntity3)).EndInit();
             this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEntity4)).EndInit();
             this.pnlStatistics.ResumeLayout(false);
             this.pnlStatistics.PerformLayout();
+            this.pnlAgentSale.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgAgentSale)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1321,18 +1657,7 @@
         private System.Windows.Forms.TabPage tabPage4;
         public System.Windows.Forms.DataGridView dgEntity3;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn39;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn44;
+        private System.Windows.Forms.DataGridView dgEntity4;
         private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage8;
@@ -1365,12 +1690,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendorCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendorName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VEntity;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyerCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuyerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BEntity;
         private System.Windows.Forms.DataGridViewTextBoxColumn PIC;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ways;
         private System.Windows.Forms.DataGridViewTextBoxColumn Marks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Entity;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1380,12 +1706,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
@@ -1395,12 +1722,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn46;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn51;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
@@ -1410,8 +1738,51 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn35;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn36;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn39;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn44;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.RibbonPanel rpAgentSale;
+        private System.Windows.Forms.RibbonButton rbAgentSale;
+        private System.Windows.Forms.Panel pnlAgentSale;
+        private System.Windows.Forms.DataGridView dgAgentSale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASLotNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASHead;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASDescriptor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASVendor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASVendorName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASVEntity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASBuyer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASBuyerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ADBEntity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASPIC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASWays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ASMarks;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnCreate;
     }
 }
 
