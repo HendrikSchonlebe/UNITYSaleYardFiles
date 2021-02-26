@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,6 +41,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.rtProcess = new System.Windows.Forms.RibbonTab();
             this.rpProcess = new System.Windows.Forms.RibbonPanel();
@@ -66,22 +66,6 @@
             this.tcEntities = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgUnallocated = new System.Windows.Forms.DataGridView();
-            this.LotNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Head = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DescriptorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VendorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VendorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuyerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuyerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ways = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Marks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgEntity1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -197,6 +181,22 @@
             this.ASPIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ASWays = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ASMarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LotNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Head = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descriptor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VendorCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VendorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuyerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuyerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BEntity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ways = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Marks = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcEntities.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUnallocated)).BeginInit();
@@ -431,139 +431,13 @@
             this.dgUnallocated.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgUnallocated_CellMouseClick);
             this.dgUnallocated.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgUnallocated_CellPainting);
             // 
-            // LotNo
-            // 
-            this.LotNo.HeaderText = "Lot #";
-            this.LotNo.MinimumWidth = 12;
-            this.LotNo.Name = "LotNo";
-            this.LotNo.Width = 70;
-            // 
-            // Head
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Head.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Head.HeaderText = "Head";
-            this.Head.MinimumWidth = 12;
-            this.Head.Name = "Head";
-            this.Head.Width = 50;
-            // 
-            // DescriptorCode
-            // 
-            this.DescriptorCode.HeaderText = "Code";
-            this.DescriptorCode.MinimumWidth = 12;
-            this.DescriptorCode.Name = "DescriptorCode";
-            this.DescriptorCode.Width = 50;
-            // 
-            // Descriptor
-            // 
-            this.Descriptor.HeaderText = "Descriptor";
-            this.Descriptor.MinimumWidth = 12;
-            this.Descriptor.Name = "Descriptor";
-            this.Descriptor.Width = 150;
-            // 
-            // Weight
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N1";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Weight.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Weight.HeaderText = "Kgs";
-            this.Weight.MinimumWidth = 12;
-            this.Weight.Name = "Weight";
-            this.Weight.Width = 70;
-            // 
-            // Price
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "C3";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 12;
-            this.Price.Name = "Price";
-            this.Price.Width = 70;
-            // 
-            // TotalValue
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "C2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.TotalValue.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TotalValue.HeaderText = "Value";
-            this.TotalValue.MinimumWidth = 12;
-            this.TotalValue.Name = "TotalValue";
-            this.TotalValue.Width = 80;
-            // 
-            // VendorCode
-            // 
-            this.VendorCode.HeaderText = "Vendor ";
-            this.VendorCode.MinimumWidth = 12;
-            this.VendorCode.Name = "VendorCode";
-            this.VendorCode.Width = 70;
-            // 
-            // VendorName
-            // 
-            this.VendorName.HeaderText = "Vendor Name";
-            this.VendorName.MinimumWidth = 12;
-            this.VendorName.Name = "VendorName";
-            this.VendorName.Width = 200;
-            // 
-            // VEntity
-            // 
-            this.VEntity.HeaderText = "Entity";
-            this.VEntity.MinimumWidth = 12;
-            this.VEntity.Name = "VEntity";
-            // 
-            // BuyerCode
-            // 
-            this.BuyerCode.HeaderText = "Buyer";
-            this.BuyerCode.MinimumWidth = 12;
-            this.BuyerCode.Name = "BuyerCode";
-            this.BuyerCode.Width = 70;
-            // 
-            // BuyerName
-            // 
-            this.BuyerName.HeaderText = "Buyer Name";
-            this.BuyerName.MinimumWidth = 12;
-            this.BuyerName.Name = "BuyerName";
-            this.BuyerName.Width = 200;
-            // 
-            // BEntity
-            // 
-            this.BEntity.HeaderText = "Entity";
-            this.BEntity.MinimumWidth = 12;
-            this.BEntity.Name = "BEntity";
-            // 
-            // PIC
-            // 
-            this.PIC.HeaderText = "PIC/PID";
-            this.PIC.MinimumWidth = 12;
-            this.PIC.Name = "PIC";
-            this.PIC.Width = 70;
-            // 
-            // Ways
-            // 
-            this.Ways.HeaderText = "Ways";
-            this.Ways.MinimumWidth = 12;
-            this.Ways.Name = "Ways";
-            this.Ways.Width = 50;
-            // 
-            // Marks
-            // 
-            this.Marks.HeaderText = "Marks";
-            this.Marks.MinimumWidth = 12;
-            this.Marks.Name = "Marks";
-            this.Marks.Width = 50;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dgEntity1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage2.Size = new System.Drawing.Size(1532, 575);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -593,7 +467,7 @@
             this.dgEntity1.Location = new System.Drawing.Point(3, 3);
             this.dgEntity1.Name = "dgEntity1";
             this.dgEntity1.RowHeadersWidth = 30;
-            this.dgEntity1.Size = new System.Drawing.Size(1580, 569);
+            this.dgEntity1.Size = new System.Drawing.Size(1526, 569);
             this.dgEntity1.TabIndex = 3;
             this.dgEntity1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEntity1_CellMouseClick);
             // 
@@ -727,7 +601,7 @@
             this.tabPage3.Controls.Add(this.dgEntity2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage3.Size = new System.Drawing.Size(1532, 575);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -757,7 +631,7 @@
             this.dgEntity2.Location = new System.Drawing.Point(0, 0);
             this.dgEntity2.Name = "dgEntity2";
             this.dgEntity2.RowHeadersWidth = 30;
-            this.dgEntity2.Size = new System.Drawing.Size(1586, 575);
+            this.dgEntity2.Size = new System.Drawing.Size(1532, 575);
             this.dgEntity2.TabIndex = 3;
             this.dgEntity2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgEntity2_CellMouseClick);
             // 
@@ -891,7 +765,7 @@
             this.tabPage4.Controls.Add(this.dgEntity3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage4.Size = new System.Drawing.Size(1532, 575);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -921,7 +795,7 @@
             this.dgEntity3.Location = new System.Drawing.Point(0, 0);
             this.dgEntity3.Name = "dgEntity3";
             this.dgEntity3.RowHeadersWidth = 30;
-            this.dgEntity3.Size = new System.Drawing.Size(1586, 575);
+            this.dgEntity3.Size = new System.Drawing.Size(1532, 575);
             this.dgEntity3.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn23
@@ -1034,7 +908,7 @@
             this.tabPage5.Controls.Add(this.dgEntity4);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage5.Size = new System.Drawing.Size(1532, 575);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1064,7 +938,7 @@
             this.dgEntity4.Location = new System.Drawing.Point(0, 0);
             this.dgEntity4.Name = "dgEntity4";
             this.dgEntity4.RowHeadersWidth = 30;
-            this.dgEntity4.Size = new System.Drawing.Size(1586, 575);
+            this.dgEntity4.Size = new System.Drawing.Size(1532, 575);
             this.dgEntity4.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn34
@@ -1176,7 +1050,7 @@
             // 
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage6.Size = new System.Drawing.Size(1532, 575);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1185,7 +1059,7 @@
             // 
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage7.Size = new System.Drawing.Size(1532, 575);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "tabPage7";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1194,7 +1068,7 @@
             // 
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage8.Size = new System.Drawing.Size(1532, 575);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "tabPage8";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -1203,7 +1077,7 @@
             // 
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage9.Size = new System.Drawing.Size(1532, 575);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "tabPage9";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -1212,7 +1086,7 @@
             // 
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(1586, 575);
+            this.tabPage10.Size = new System.Drawing.Size(1532, 575);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "tabPage10";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1236,7 +1110,7 @@
             this.pnlStatistics.Controls.Add(this.txtLots);
             this.pnlStatistics.Controls.Add(this.lblStatistics);
             this.pnlStatistics.Controls.Add(this.label1);
-            this.pnlStatistics.Location = new System.Drawing.Point(463, 50);
+            this.pnlStatistics.Location = new System.Drawing.Point(324, 85);
             this.pnlStatistics.Name = "pnlStatistics";
             this.pnlStatistics.Size = new System.Drawing.Size(346, 282);
             this.pnlStatistics.TabIndex = 3;
@@ -1331,7 +1205,7 @@
             // 
             // txtKgs
             // 
-            this.txtKgs.Location = new System.Drawing.Point(243, 136);
+            this.txtKgs.Location = new System.Drawing.Point(228, 110);
             this.txtKgs.Name = "txtKgs";
             this.txtKgs.ReadOnly = true;
             this.txtKgs.Size = new System.Drawing.Size(100, 20);
@@ -1591,6 +1465,132 @@
             this.ASMarks.ReadOnly = true;
             this.ASMarks.Width = 50;
             // 
+            // LotNo
+            // 
+            this.LotNo.HeaderText = "Lot #";
+            this.LotNo.MinimumWidth = 12;
+            this.LotNo.Name = "LotNo";
+            this.LotNo.Width = 70;
+            // 
+            // Head
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Head.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Head.HeaderText = "Head";
+            this.Head.MinimumWidth = 12;
+            this.Head.Name = "Head";
+            this.Head.Width = 50;
+            // 
+            // DescriptorCode
+            // 
+            this.DescriptorCode.HeaderText = "Code";
+            this.DescriptorCode.MinimumWidth = 12;
+            this.DescriptorCode.Name = "DescriptorCode";
+            this.DescriptorCode.Width = 50;
+            // 
+            // Descriptor
+            // 
+            this.Descriptor.HeaderText = "Descriptor";
+            this.Descriptor.MinimumWidth = 12;
+            this.Descriptor.Name = "Descriptor";
+            this.Descriptor.Width = 150;
+            // 
+            // Weight
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N1";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Weight.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Weight.HeaderText = "Kgs";
+            this.Weight.MinimumWidth = 12;
+            this.Weight.Name = "Weight";
+            this.Weight.Width = 70;
+            // 
+            // Price
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C3";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 12;
+            this.Price.Name = "Price";
+            this.Price.Width = 70;
+            // 
+            // TotalValue
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "C2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.TotalValue.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TotalValue.HeaderText = "Value";
+            this.TotalValue.MinimumWidth = 12;
+            this.TotalValue.Name = "TotalValue";
+            this.TotalValue.Width = 80;
+            // 
+            // VendorCode
+            // 
+            this.VendorCode.HeaderText = "Vendor ";
+            this.VendorCode.MinimumWidth = 12;
+            this.VendorCode.Name = "VendorCode";
+            this.VendorCode.Width = 70;
+            // 
+            // VendorName
+            // 
+            this.VendorName.HeaderText = "Vendor Name";
+            this.VendorName.MinimumWidth = 12;
+            this.VendorName.Name = "VendorName";
+            this.VendorName.Width = 200;
+            // 
+            // VEntity
+            // 
+            this.VEntity.HeaderText = "Entity";
+            this.VEntity.MinimumWidth = 12;
+            this.VEntity.Name = "VEntity";
+            // 
+            // BuyerCode
+            // 
+            this.BuyerCode.HeaderText = "Buyer";
+            this.BuyerCode.MinimumWidth = 12;
+            this.BuyerCode.Name = "BuyerCode";
+            this.BuyerCode.Width = 70;
+            // 
+            // BuyerName
+            // 
+            this.BuyerName.HeaderText = "Buyer Name";
+            this.BuyerName.MinimumWidth = 12;
+            this.BuyerName.Name = "BuyerName";
+            this.BuyerName.Width = 200;
+            // 
+            // BEntity
+            // 
+            this.BEntity.HeaderText = "Entity";
+            this.BEntity.MinimumWidth = 12;
+            this.BEntity.Name = "BEntity";
+            // 
+            // PIC
+            // 
+            this.PIC.HeaderText = "PIC/PID";
+            this.PIC.MinimumWidth = 12;
+            this.PIC.Name = "PIC";
+            this.PIC.Width = 70;
+            // 
+            // Ways
+            // 
+            this.Ways.HeaderText = "Ways";
+            this.Ways.MinimumWidth = 12;
+            this.Ways.Name = "Ways";
+            this.Ways.Width = 50;
+            // 
+            // Marks
+            // 
+            this.Marks.HeaderText = "Marks";
+            this.Marks.MinimumWidth = 12;
+            this.Marks.Name = "Marks";
+            this.Marks.Width = 50;
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1681,22 +1681,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.SaveFileDialog exportFile;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LotNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Head;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptorCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descriptor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VendorCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VendorName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VEntity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BuyerCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BuyerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BEntity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PIC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ways;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Marks;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1783,6 +1767,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ASMarks;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LotNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Head;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptorCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descriptor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Weight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VendorCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VendorName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VEntity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BuyerCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BuyerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BEntity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PIC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ways;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Marks;
     }
 }
 

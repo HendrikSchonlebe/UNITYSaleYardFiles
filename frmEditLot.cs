@@ -395,6 +395,14 @@ namespace UNITYSaleYardFiles
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            Boolean updateGlobalDescriptors = false;
+
+            if (txtDescriptorCode.Text != txtNewDescriptorCode.Text)
+            {
+                if (MessageBox.Show(messageHeader + "Change all Descriptor Codes from " + txtDescriptorCode.Text + " To " + txtNewDescriptorCode.Text + " ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    updateGlobalDescriptors = true;
+            }
+
             if (cmbNewEntity.Text != cmbNewEntity.Items[0].ToString())
             {
                 if ((cmbEntity.Text != cmbNewEntity.Text) & (cmbEntity.Text != cmbEntity.Items[0].ToString()))    // Vendor to be moved from one Business Entity to another
@@ -557,6 +565,84 @@ namespace UNITYSaleYardFiles
             {
                 MessageBox.Show(messageHeader + "Vendor must be allocated to a Business Entity !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+            if (updateGlobalDescriptors)
+            {
+                for (int i = 0; i < parentForm.dgUnallocated.Rows.Count; i++)
+                {
+                    if (parentForm.dgUnallocated.Rows[i].Cells["DescriptorCode"].Value.ToString() == txtDescriptorCode.Text)
+                    {
+                        parentForm.dgUnallocated.Rows[i].Cells["VEntity"].Value = cmbNewEntity.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["DescriptorCode"].Value = txtNewDescriptorCode.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["Descriptor"].Value = txtNewDescriptor.Text;
+                    }
+                }
+
+                parentForm.dgEntity1.Rows.Clear();
+                parentForm.dgEntity2.Rows.Clear();
+
+                for (int i = 0; i < parentForm.dgUnallocated.Rows.Count; i++)
+                {
+                    // Add Lot to Entity Grid
+                    if (Get_Entity_Index_By_Name(parentForm.dgUnallocated.Rows[i].Cells[9].Value.ToString()) == 0)
+                    {
+                        parentForm.dgEntity1.Rows.Add(
+                            parentForm.dgUnallocated.Rows[i].Cells[0].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[1].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[2].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[3].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[4].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[5].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[6].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[7].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[8].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[9].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[10].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[11].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[12].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[13].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[14].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[15].Value
+                            );
+                    }
+                    else if (Get_Entity_Index_By_Name(parentForm.dgUnallocated.Rows[i].Cells[9].Value.ToString()) == 1)
+                    {
+                        parentForm.dgEntity2.Rows.Add(
+                            parentForm.dgUnallocated.Rows[i].Cells[0].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[1].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[2].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[3].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[4].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[5].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[6].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[7].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[8].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[9].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[10].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[11].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[12].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[13].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[14].Value,
+                            parentForm.dgUnallocated.Rows[i].Cells[15].Value
+                            );
+                    }
+                }
+            }
+        }
+        private Int32 Get_Entity_Index_By_Name(String entityName)
+        {
+            Int32 myIdex = -1;
+
+            for (int i = 1; i < cmbEntity.Items.Count; i++)
+            {
+                if (cmbEntity.Items[i].ToString() == entityName)
+                {
+                    myIdex = i - 1;
+                    break;
+                }
+            }
+
+            return myIdex;
         }
         private void Add_To_Entity_Grid()
         {
