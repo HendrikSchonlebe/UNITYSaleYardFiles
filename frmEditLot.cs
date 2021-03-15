@@ -24,6 +24,8 @@ namespace UNITYSaleYardFiles
         private Int32 newEntityIndex;
         private Int32 newBuyerEntityIndex;
         private String clientShartName = string.Empty;
+        private String helpMessage = string.Empty;
+        private Boolean isLoaded = false;
 
         public frmEditLot()
         {
@@ -113,13 +115,53 @@ namespace UNITYSaleYardFiles
                 txtBuyer.Text = string.Empty;
                 txtNewBuyerDetails.Text = string.Empty;
             }
+
+            isLoaded = true;
+
+            Form_Validate();
         }
         private void frmEditLot_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            if ((e.KeyCode == Keys.F1) & (btnUpdate.Enabled == true))
                 btnUpdate_Click(sender, e);
+            else if ((e.KeyCode == Keys.F12) & (btnHelp.Enabled == true))
+                btnHelp_Click(sender, e);
             else if (e.KeyCode == Keys.Escape)
                 btnCancel_Click(sender, e);
+        }
+        private void Form_Validate()
+        {
+            Boolean isValid = true;
+
+            if (isLoaded == true)
+            {
+                helpMessage = string.Empty;
+
+                isValid = isValid & cmbNewEntity.Text != cmbNewEntity.Items[0].ToString();
+                if (cmbNewEntity.Text == cmbNewEntity.Items[0].ToString())
+                    helpMessage += "Vendor must belong to a Business Entity !\r\n";
+                isValid = isValid & cmbNewBEntity.Text != cmbNewBEntity.Items[0].ToString();
+                if (cmbNewBEntity.Text == cmbNewBEntity.Items[0].ToString())
+                    helpMessage += "Buyer must belong to a Business Entity !\r\n";
+                isValid = isValid & txtNewVendorDetails.Text != "Not Found !";
+                if (txtNewVendorDetails.Text == "Not Found !")
+                    helpMessage += "Vendor not in the selected business Entity !\r\n";
+                isValid = isValid & txtNewVendorDetails.Text.Trim().Length > 0;
+                if (txtNewVendorDetails.Text.Trim().Length <= 0)
+                    helpMessage += "Vendor not in the selected business Entity !\r\n";
+                isValid = isValid & txtNewBuyerDetails.Text != "Not Found !";
+                if (txtNewBuyerDetails.Text == "Not Found !")
+                    helpMessage += "Buyer not in the selected business Entity !\r\n";
+                isValid = isValid & txtNewBuyerDetails.Text.Trim().Length > 0;
+                if (txtNewBuyerDetails.Text.Trim().Length <= 0)
+                    helpMessage += "Buyer not in the selected business Entity !\r\n";
+                isValid = isValid & txtNewDescriptor.Text != "Not Found !";
+                if (txtNewDescriptor.Text == "Not Found !")
+                    helpMessage += "Sale Descriptor not found in Vendor's Business Entity !\r\n";
+
+                btnHelp.Enabled = !isValid;
+                btnUpdate.Enabled = isValid;
+            }
         }
 
         private void cmbNewEntity_SelectedValueChanged(object sender, EventArgs e)
@@ -157,6 +199,8 @@ namespace UNITYSaleYardFiles
                 txtNewDescriptor.Text = string.Empty;
                 txtNewBuyerDetails.Text = string.Empty;
             }
+
+            Form_Validate();
         }
         private Int32 Get_New_Entity_Index()
         {
@@ -211,6 +255,8 @@ namespace UNITYSaleYardFiles
                 }
                 rdrGet.Close();
                 cmdGet.Dispose();
+
+                Form_Validate();
             }
             catch (Exception ex)
             {
@@ -237,6 +283,8 @@ namespace UNITYSaleYardFiles
                 }
                 rdrGet.Close();
                 cmdGet.Dispose();
+
+                Form_Validate();
             }
             catch (Exception ex)
             {
@@ -264,6 +312,8 @@ namespace UNITYSaleYardFiles
                 }
                 rdrGet.Close();
                 cmdGet.Dispose();
+
+                Form_Validate();
             }
             catch (Exception ex)
             {
@@ -326,6 +376,8 @@ namespace UNITYSaleYardFiles
             {
                 txtNewBuyerDetails.Text = string.Empty;
             }
+
+            Form_Validate();
         }
         private void txtNewBuyerCode_Enter(object sender, EventArgs e)
         {
@@ -396,6 +448,8 @@ namespace UNITYSaleYardFiles
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             Boolean updateGlobalDescriptors = false;
+            Boolean updateGLobalVendors = false;
+            Boolean updateGLobalBuyers = false;
 
             if (txtDescriptorCode.Text != txtNewDescriptorCode.Text)
             {
@@ -403,168 +457,27 @@ namespace UNITYSaleYardFiles
                     updateGlobalDescriptors = true;
             }
 
-            if (cmbNewEntity.Text != cmbNewEntity.Items[0].ToString())
+            if (txtVendorCode.Text != txtNewVendorCode.Text)
             {
-                if ((cmbEntity.Text != cmbNewEntity.Text) & (cmbEntity.Text != cmbEntity.Items[0].ToString()))    // Vendor to be moved from one Business Entity to another
-                {
-                    // Get Previous Business Entity Index
-                    Int32 prevEntityIndex = -1;
-                    for (int i = 1; i < cmbEntity.Items.Count; i++)
-                    {
-                        if (cmbEntity.Text == parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VEntity"].Value.ToString())
-                        {
-                            prevEntityIndex = i - 1;
-                            break;
-                        }
-                    }
-                    // Remove from the Previous Business Entity Grid
-                    if (prevEntityIndex == 0)
-                    {
-                        for (int i = 0; i < parentForm.dgEntity1.Rows.Count; i++)
-                        {
-                            if (parentForm.dgUnallocated.Rows[currentRowIndex].Cells[0].Value == parentForm.dgEntity1.Rows[i].Cells[0].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[1].Value == parentForm.dgEntity1.Rows[i].Cells[1].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[2].Value == parentForm.dgEntity1.Rows[i].Cells[2].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[3].Value == parentForm.dgEntity1.Rows[i].Cells[3].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[4].Value == parentForm.dgEntity1.Rows[i].Cells[4].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[5].Value == parentForm.dgEntity1.Rows[i].Cells[5].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[6].Value == parentForm.dgEntity1.Rows[i].Cells[6].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[7].Value == parentForm.dgEntity1.Rows[i].Cells[7].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[8].Value == parentForm.dgEntity1.Rows[i].Cells[8].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[9].Value == parentForm.dgEntity1.Rows[i].Cells[9].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[10].Value == parentForm.dgEntity1.Rows[i].Cells[10].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value == parentForm.dgEntity1.Rows[i].Cells[11].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value == parentForm.dgEntity1.Rows[i].Cells[12].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value == parentForm.dgEntity1.Rows[i].Cells[13].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value == parentForm.dgEntity1.Rows[i].Cells[14].Value
-                                )
-                            {
-                                DataGridViewRow thisRow = parentForm.dgEntity1.Rows[i];
-                                parentForm.dgEntity1.Rows.Remove(thisRow);
-                                break;
-                            }
-                        }
-                    }
-                    else if (prevEntityIndex == 1)
-                    {
-                        for (int i = 0; i < parentForm.dgEntity2.Rows.Count; i++)
-                        {
-                            if (parentForm.dgUnallocated.Rows[currentRowIndex].Cells[0].Value == parentForm.dgEntity2.Rows[i].Cells[0].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[1].Value == parentForm.dgEntity2.Rows[i].Cells[1].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[2].Value == parentForm.dgEntity2.Rows[i].Cells[2].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[3].Value == parentForm.dgEntity2.Rows[i].Cells[3].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[4].Value == parentForm.dgEntity2.Rows[i].Cells[4].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[5].Value == parentForm.dgEntity2.Rows[i].Cells[5].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[6].Value == parentForm.dgEntity2.Rows[i].Cells[6].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[7].Value == parentForm.dgEntity2.Rows[i].Cells[7].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[8].Value == parentForm.dgEntity2.Rows[i].Cells[8].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[9].Value == parentForm.dgEntity2.Rows[i].Cells[9].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[10].Value == parentForm.dgEntity2.Rows[i].Cells[10].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value == parentForm.dgEntity2.Rows[i].Cells[11].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value == parentForm.dgEntity2.Rows[i].Cells[12].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value == parentForm.dgEntity2.Rows[i].Cells[13].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value == parentForm.dgEntity2.Rows[i].Cells[14].Value
-                                )
-                            {
-                                DataGridViewRow thisRow = parentForm.dgEntity2.Rows[i];
-                                parentForm.dgEntity2.Rows.Remove(thisRow);
-                                break;
-                            }
-                        }
-                    }
-                }
-                else if (cmbEntity.Text == cmbNewEntity.Text)                           // Business Entity is the Same only Vendor / Buyer or Descriptor has changed
-                {
-                    // Update Business Entity Grid
-                    if (currentEntityIndex == 0)
-                    {
-                        for (int i = 0; i < parentForm.dgEntity1.Rows.Count; i++)
-                        {
-                            if (parentForm.dgUnallocated.Rows[currentRowIndex].Cells[0].Value == parentForm.dgEntity1.Rows[i].Cells[0].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[1].Value == parentForm.dgEntity1.Rows[i].Cells[1].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[2].Value == parentForm.dgEntity1.Rows[i].Cells[2].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[3].Value == parentForm.dgEntity1.Rows[i].Cells[3].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[4].Value == parentForm.dgEntity1.Rows[i].Cells[4].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[5].Value == parentForm.dgEntity1.Rows[i].Cells[5].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[6].Value == parentForm.dgEntity1.Rows[i].Cells[6].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[7].Value == parentForm.dgEntity1.Rows[i].Cells[7].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[8].Value == parentForm.dgEntity1.Rows[i].Cells[8].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[9].Value == parentForm.dgEntity1.Rows[i].Cells[9].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[10].Value == parentForm.dgEntity1.Rows[i].Cells[10].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value == parentForm.dgEntity1.Rows[i].Cells[11].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value == parentForm.dgEntity1.Rows[i].Cells[12].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value == parentForm.dgEntity1.Rows[i].Cells[13].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value == parentForm.dgEntity1.Rows[i].Cells[14].Value
-                                )
-                            {
-                                parentForm.dgEntity1.Rows[i].Cells[7].Value = txtNewVendorCode.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[8].Value = txtNewVendorDetails.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[10].Value = txtNewBuyerCode.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[11].Value = txtNewBuyerDetails.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[2].Value = txtNewDescriptorCode.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[3].Value = txtNewDescriptor.Text;
-                                parentForm.dgEntity1.Rows[i].Cells[12].Value = cmbNewBEntity.Text;
-                                break;
-                            }
-                        }
-                    }
-                    else if (currentEntityIndex == 1)
-                    {
-                        for (int i = 0; i < parentForm.dgEntity2.Rows.Count; i++)
-                        {
-                            if (parentForm.dgUnallocated.Rows[currentRowIndex].Cells[0].Value == parentForm.dgEntity2.Rows[i].Cells[0].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[1].Value == parentForm.dgEntity2.Rows[i].Cells[1].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[2].Value == parentForm.dgEntity2.Rows[i].Cells[2].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[3].Value == parentForm.dgEntity2.Rows[i].Cells[3].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[4].Value == parentForm.dgEntity2.Rows[i].Cells[4].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[5].Value == parentForm.dgEntity2.Rows[i].Cells[5].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[6].Value == parentForm.dgEntity2.Rows[i].Cells[6].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[7].Value == parentForm.dgEntity2.Rows[i].Cells[7].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[8].Value == parentForm.dgEntity2.Rows[i].Cells[8].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[9].Value == parentForm.dgEntity2.Rows[i].Cells[9].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[10].Value == parentForm.dgEntity2.Rows[i].Cells[10].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[11].Value == parentForm.dgEntity2.Rows[i].Cells[11].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[12].Value == parentForm.dgEntity2.Rows[i].Cells[12].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[13].Value == parentForm.dgEntity2.Rows[i].Cells[13].Value &
-                                parentForm.dgUnallocated.Rows[currentRowIndex].Cells[14].Value == parentForm.dgEntity2.Rows[i].Cells[14].Value
-                                )
-                            {
-                                parentForm.dgEntity2.Rows[i].Cells[7].Value = txtNewVendorCode.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[8].Value = txtNewVendorDetails.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[10].Value = txtNewBuyerCode.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[11].Value = txtNewBuyerDetails.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[2].Value = txtNewDescriptorCode.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[3].Value = txtNewDescriptor.Text;
-                                parentForm.dgEntity2.Rows[i].Cells[12].Value = cmbNewBEntity.Text;
-                                break;
-                            }
-                        }
-                    }
-                }
-
-                // Update Combined Data Data Grid
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorCode"].Value = txtNewVendorCode.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorName"].Value = txtNewVendorDetails.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BuyerCode"].Value = txtNewBuyerCode.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BuyerName"].Value = txtNewBuyerDetails.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["DescriptorCode"].Value = txtNewDescriptorCode.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["Descriptor"].Value = txtNewDescriptor.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VEntity"].Value = cmbNewEntity.Text;
-                parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BEntity"].Value = cmbNewBEntity.Text;
-                parentForm.dgUnallocated.Refresh();
-
-                if (cmbEntity.Text != cmbNewEntity.Text)                           
-                {
-                    // Add to the selected Business Entity Grid
-                    Add_To_Entity_Grid();
-                }
-
-                this.Close();
+                if (MessageBox.Show(messageHeader + "Change all Vendor Codes from " + txtVendorCode.Text + " To " + txtNewVendorCode.Text + " ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    updateGLobalVendors = true;
             }
-            else
+            if (txtBuyerCode.Text != txtNewBuyerCode.Text)
             {
-                MessageBox.Show(messageHeader + "Vendor must be allocated to a Business Entity !", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (MessageBox.Show(messageHeader + "Change all Buyer Codes from " + txtBuyerCode.Text + " To " + txtNewBuyerCode.Text + " ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    updateGLobalBuyers = true;
             }
+
+            // Update Combined Data Data Grid
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorCode"].Value = txtNewVendorCode.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VendorName"].Value = txtNewVendorDetails.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BuyerCode"].Value = txtNewBuyerCode.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BuyerName"].Value = txtNewBuyerDetails.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["DescriptorCode"].Value = txtNewDescriptorCode.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["Descriptor"].Value = txtNewDescriptor.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["VEntity"].Value = cmbNewEntity.Text;
+            parentForm.dgUnallocated.Rows[currentRowIndex].Cells["BEntity"].Value = cmbNewBEntity.Text;
+            parentForm.dgUnallocated.Refresh();
 
             if (updateGlobalDescriptors)
             {
@@ -577,73 +490,35 @@ namespace UNITYSaleYardFiles
                         parentForm.dgUnallocated.Rows[i].Cells["Descriptor"].Value = txtNewDescriptor.Text;
                     }
                 }
-
-                parentForm.dgEntity1.Rows.Clear();
-                parentForm.dgEntity2.Rows.Clear();
-
+            }
+            if (updateGLobalVendors)
+            {
                 for (int i = 0; i < parentForm.dgUnallocated.Rows.Count; i++)
                 {
-                    // Add Lot to Entity Grid
-                    if (Get_Entity_Index_By_Name(parentForm.dgUnallocated.Rows[i].Cells[9].Value.ToString()) == 0)
+                    if (parentForm.dgUnallocated.Rows[i].Cells["VendorCode"].Value.ToString() == txtVendorCode.Text)
                     {
-                        parentForm.dgEntity1.Rows.Add(
-                            parentForm.dgUnallocated.Rows[i].Cells[0].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[1].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[2].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[3].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[4].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[5].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[6].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[7].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[8].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[9].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[10].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[11].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[12].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[13].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[14].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[15].Value
-                            );
-                    }
-                    else if (Get_Entity_Index_By_Name(parentForm.dgUnallocated.Rows[i].Cells[9].Value.ToString()) == 1)
-                    {
-                        parentForm.dgEntity2.Rows.Add(
-                            parentForm.dgUnallocated.Rows[i].Cells[0].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[1].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[2].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[3].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[4].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[5].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[6].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[7].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[8].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[9].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[10].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[11].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[12].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[13].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[14].Value,
-                            parentForm.dgUnallocated.Rows[i].Cells[15].Value
-                            );
+                        parentForm.dgUnallocated.Rows[i].Cells["VendorCode"].Value = txtNewVendorCode.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["VendorName"].Value = txtNewVendorDetails.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["VEntity"].Value = cmbNewEntity.Text;
                     }
                 }
             }
-        }
-        private Int32 Get_Entity_Index_By_Name(String entityName)
-        {
-            Int32 myIdex = -1;
-
-            for (int i = 1; i < cmbEntity.Items.Count; i++)
+            if (updateGLobalBuyers)
             {
-                if (cmbEntity.Items[i].ToString() == entityName)
+                for (int i = 0; i < parentForm.dgUnallocated.Rows.Count; i++)
                 {
-                    myIdex = i - 1;
-                    break;
+                    if (parentForm.dgUnallocated.Rows[i].Cells["BuyerCode"].Value.ToString() == txtBuyerCode.Text)
+                    {
+                        parentForm.dgUnallocated.Rows[i].Cells["BuyerCode"].Value = txtNewBuyerCode.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["BuyerName"].Value = txtNewBuyerDetails.Text;
+                        parentForm.dgUnallocated.Rows[i].Cells["BEntity"].Value = cmbNewBEntity.Text;
+                    }
                 }
             }
 
-            return myIdex;
+            this.Close();
         }
+
         private void Add_To_Entity_Grid()
         {
             if (newEntityIndex == 0)
@@ -693,6 +568,9 @@ namespace UNITYSaleYardFiles
         {
             this.Close();
         }
-
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(messageHeader + helpMessage, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
     }
 }

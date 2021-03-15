@@ -57,6 +57,7 @@
             this.cmbBEntity = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbNewBEntity = new System.Windows.Forms.ComboBox();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -339,11 +340,26 @@
             this.cmbNewBEntity.TabIndex = 27;
             this.cmbNewBEntity.SelectedValueChanged += new System.EventHandler(this.cmbNewBEntity_SelectedValueChanged);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.Image = ((System.Drawing.Image)(resources.GetObject("btnHelp.Image")));
+            this.btnHelp.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnHelp.Location = new System.Drawing.Point(529, 450);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(91, 61);
+            this.btnHelp.TabIndex = 28;
+            this.btnHelp.Text = "F12-Help";
+            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // frmEditLot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 523);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.cmbNewBEntity);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cmbBEntity);
@@ -413,5 +429,6 @@
         private System.Windows.Forms.ComboBox cmbBEntity;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbNewBEntity;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

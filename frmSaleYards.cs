@@ -34,6 +34,7 @@ namespace UNITYSaleYardFiles
             this.Text = "UNITY - Sale Yard Parameter Maintenance";
             cmbFormat.Items.Clear();
             cmbFormat.Items.Add("Livestock Exchange - TXT format");
+            cmbFormat.Items.Add("Auctions Plus - XLSX format");
             cmbFormat.Text = cmbFormat.Items[0].ToString();
             dgSaleYards.Rows.Clear();
             for (int i = 0; i < MySaleYards.Count; i++)

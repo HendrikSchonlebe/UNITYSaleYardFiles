@@ -143,6 +143,16 @@
         RU5ErkJggg==
 </value>
   </data>
+  <data name="btnHelp.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAEASURBVFhH7Y5RDsMgDEN39N2cNVFhQJ8JdP1opVl6FaQO9iultMQm+0h6fwQOe5qQd0Dl7d8h
+        cJgpj1HQDBNFcGiMgpXI6wxK8FCEz4p2VYnj4MfwLHqDSrQXEW6sit5wuhLfw4XhWfSWU5W4R4FRuKE0
+        +x/ZS/wLhOERSuQ9YNmPLqBEXuTRBZTIK3lsASXyDrlFAdtbLaFEXsmWaSunClzCFQWy6F9IXcAPCyWU
+        yIvs4cZ9CvhlokQk2mmowo1yKIOgRCTaKXThRnMpw5MlyFuAcOMwyIxKKJHXEeEGDjNeYqII/XP2fbMo
+        cNhTihgUVFN5+3cIHI6oA4jePya9Po2IA4LEG13VAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAICAYAAEAGACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAA

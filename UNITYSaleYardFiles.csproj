@@ -24,7 +24,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -123,12 +123,6 @@
     <Compile Include="frmSaleYards.Designer.cs">
       <DependentUpon>frmSaleYards.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSaleYardSelect.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSaleYardSelect.Designer.cs">
-      <DependentUpon>frmSaleYardSelect.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmBusinessEntities.resx">
@@ -148,9 +142,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSaleYards.resx">
       <DependentUpon>frmSaleYards.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSaleYardSelect.resx">
-      <DependentUpon>frmSaleYardSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
